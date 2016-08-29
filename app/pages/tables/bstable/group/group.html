@@ -1,0 +1,71 @@
+<blockquote>
+
+<div class="well well-lg">
+<p>
+html:
+<pre>
+&lt;table 
+	ng-model="jstabledata" 
+	data-show-pagination-info="false"
+	data-pagination="false"
+	data-single-select="false"
+	data-group-by="true"
+	data-group-by-field="[gb1]"
+	data-group-by-sum-group="true"
+	bs-table-control="tableOptions"&gt;
+	&lt;thead&gt;
+	&lt;tr&gt;
+		&lt;th data-field="gb1"&gt;group&lt;/th&gt;
+		&lt;th data-field="sf" data-group-by-sum-group="true"&gt;sum&lt;/th&gt;
+	 	&lt;th data-field="id"&gt;ID&lt;/th&gt;
+	 	&lt;th data-field="name"&gt;name&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;/thead&gt;
+&lt;/table&gt;	
+</pre>
+javascript
+<pre>
+angular.controller('demoController', ['$scope'function($scope){
+	$scope.tableOptions = {};
+	$scope.jstabledata = {total: 100, rows: [
+		{id: '10001',name: '列数据', gb1: '分组1', sf: 1},
+		{id: '10002',name: '列数据', gb1: '分组1', sf: 2},
+		{id: '10003',name: '列数据', gb1: '分组1', sf: 3},
+		{id: '10004',name: '列数据', gb1: '分组2', sf: 4},
+		{id: '10005',name: '列数据', gb1: '分组2', sf: 5},
+		{id: '10006',name: '列数据', gb1: '分组2', sf: 6},
+		{id: '10007',name: '列数据', gb1: '分组3', sf: 7},
+		{id: '10008',name: '列数据', gb1: '分组3', sf: 8},
+		{id: '10009',name: '列数据', gb1: '分组3', sf: 9},
+		{id: '100010',name: '列数据', gb1: '分组4', sf: 10},
+		{id: '100011',name: '列数据', gb1: '分组4', sf: 11},
+		{id: '100012',name: '列数据', gb1: '分组4', sf: 12},
+		{id: '100013',name: '列数据', gb1: '分组4', sf: 13},
+	]}
+}])
+</pre>
+</p>
+</div>
+</blockquote>
+<p>
+例子
+<table 
+	ng-model="jstabledata" 
+	data-show-pagination-info="false"
+	data-pagination="false"
+	data-single-select="false"
+	data-group-by="true"
+	data-group-by-field="[gb1]"
+	data-group-by-sum-group="true"
+	bs-table-control="tableOptions">
+	<thead>
+	<tr>
+		<th data-field="gb1">group</th>
+		<th data-field="sf" data-group-by-sum-group="true">sum</th>
+	 	<th data-field="id">ID</th>
+	 	<th data-field="name">name</th>
+	</tr>
+	</thead>
+</table>
+
+</p>

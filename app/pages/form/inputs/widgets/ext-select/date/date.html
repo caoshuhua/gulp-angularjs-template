@@ -1,0 +1,77 @@
+<blockquote>
+<div class="well well-lg">
+<p>Html
+<pre>
+选择日期是selects1
+&lt;form class="form-inline"&gt;
+	&lt;div class="input-group"&gt;
+		&lt;input type="text"
+			ng-model="selects1"
+			ui-select-base="selectDateoptions"
+			data-picker-width="320",
+			data-picker-height="260",
+			data-single-select="false"
+			start-date="startDate" //起始日期
+			end-date="endDate"//结束日期
+			data-template-tpl="date-picker-wapper" //date-picker模板
+			data-trigger-selector=":parent:button"
+			class="form-control"
+			/&gt;
+			&lt;span class="input-group-btn"&gt;
+        		&lt;button type="button" class="btn btn-default" &gt;
+        		&lt;i class="glyphicon glyphicon-chevron-down"&gt;&lt;/i&gt;
+        		&lt;/button&gt;
+      		&lt;/span&gt;
+	&lt;/div&gt;
+&lt;/form&gt;	
+</pre>
+javascript
+<pre>
+angular.controller('demoController', ['$scope', function($scope){
+	$scope.selects1 = undefined;
+	$scope.selectDateoptions = {};
+
+	$scope.startDate = '2016-07-01 00:00:00';
+	$scope.endDate = '2016-07-12 00:00:00';
+}])
+	
+</pre>
+</p>
+</div>
+</blockquote>
+<p>
+选择日期是{{selects1}}
+<form class="form-inline">
+	<div class="input-group">
+		<input type="text"
+			ng-model="selects1"
+			ui-select-base="selectDateoptions"
+			data-picker-width="320",
+			data-picker-height="260",
+			data-single-select="false"
+			start-date="startDate"
+			end-date="endDate"
+			date-select-picker
+			data-trigger-selector=":parent:button"
+			class="form-control"
+			/>
+			<span class="input-group-btn">
+        		<button type="button" class="btn btn-default" >
+        		<i class="glyphicon glyphicon-chevron-down"></i>
+        		</button>
+      		</span>
+	</div>
+</form>
+</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>

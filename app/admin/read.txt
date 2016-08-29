@@ -1,0 +1,84 @@
+我从逻辑上将应用开发代码目录结构 大致设计为以下结构
+
+admin         -------------------------(1)
+
+	————home   -------------------------(2)
+
+		————index.html
+
+		————home.component.js
+
+		————home.controller.js
+
+		————home.html
+
+		————widgets
+
+			——————xxxx1.widget.html
+
+			——————xxxx2.widget.html
+
+			——————xxxx3.widget.html
+
+	————pages  -------------------------(3)
+
+	   ————xxxx(模块)------------------(4)
+
+	       ——————funs(扩展功能)
+
+	       		 ——————add(新增)
+
+	       		 	   ——————add.html
+
+	       		 	   ——————add.controller.js
+
+	       		———————update(修改)
+
+	       		       ——————update.html
+
+	       		       ——————update.controller.js
+
+	   	   ——————index.html
+
+	   	   ——————xxxx.component.html
+
+	   	   ——————xxxx.component.js
+
+	   	   ——————xxxx.controller.js
+
+	   	   ——————xxxx.service.js
+
+	   	   ——————xxxx.mock.js
+
+	————providers -------------------------(5)
+
+	————admin.module.js  -------------------------(6)
+
+
+(1) admin：
+
+    该文件夹是应用代码的存放的根目录
+
+(2) home
+
+	存放首页代码的逻辑代码, 并且建议按照上面的目录结构进行设计
+
+(3) pages
+
+    用于存放所有的模块代码，
+
+(4) xxxx(模块) 
+	
+	展示具体模块的目录结构设计
+
+(5) providers
+
+    存放全局应用的逻辑代码： 例如配置、菜单的加载、系统配置信息的处理、
+
+(6) admin.module.js
+
+    基础模块的定义类及全局应用数据的处理, 并且其他的应用模块都必须要继承该模块
+
+
+
+    

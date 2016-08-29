@@ -1,0 +1,152 @@
+<blockquote>
+<div class="well well-lg">
+<p>
+html:
+<pre>
+&lt;form class="form-inline"&gt;
+	&lt;div class="input-group"&gt;
+		&lt;input type="text"
+			ng-model="selects"
+			ui-select-base="options"
+			data-picker-width="400",
+			data-picker-height="100",
+			data-template-tpl="checkbox-picker-wapper"
+			data-trigger-selector=":parent:button"
+			class="form-control"
+			/&gt;
+			&lt;span class="input-group-btn"&gt;
+        		&lt;button type="button" class="btn btn-default" &gt;
+        		&lt;i class="glyphicon glyphicon-chevron-down"&gt;&lt;/i&gt;
+        		&lt;/button&gt;
+      		&lt;/span&gt;
+	&lt;/div&gt;
+&lt;/form&gt;
+</pre>
+javascript
+<pre>
+module.controller('exampleController' ,['$scope', 'ngAlert', function($scope, ngAlert){
+	$scope.selects = ['1', '3'];
+	$scope.options = {
+		datas: [
+			{id: '1', text: '上海'},
+			{id: '2', text: '北京'},
+			{id: '3', text: '深圳'},
+			{id: '4', text: '广东'},
+		]
+	}
+}])
+</pre>
+</p>
+</div>
+</blockquote>
+<p>
+例子:{{selects | json}}
+<form class="form-inline">
+<div class="input-group">
+	<input type="text"
+		ng-model="selects" //数据绑定
+		ui-select-base="options"//select配置
+		data-picker-width="400",
+		data-picker-height="100",
+		checkbox-select-picker
+		data-trigger-selector=":parent:button"
+		class="form-control"
+		/>
+		<span class="input-group-btn">
+    		<button type="button" class="btn btn-default" >
+    		<i class="glyphicon glyphicon-chevron-down"></i>
+    		</button>
+  		</span>
+</div>
+</form>
+</p>
+
+
+<blockquote>
+<div class="well well-lg">
+<h1>扩展控件checkbox-decision</h1>
+<p>
+	思路: 在select base指令执行前 通过修改他的配置及逻辑 从而达到我们想要的业务控件,例如，我们接下来定制一个 "同意 or 不同意" select
+<pre>
+module.directive('uiSelectDecision', function(){
+	return {
+		restrict: 'EA',
+		priority: 99, //一定要比uiSelectBase小
+		controller: 'uiSelectDecisionController',
+		link: function($scope, element, attrs, ctrls){
+			 var optAttr = $attrs.uiSelectBase;
+			 if (!optAttr){//判断是否包含uiSelectBase指令
+			 	return;
+			 }
+			 //修改默认picker模板,这个模板按照规范定义不同的样式
+			 $element.data('templateTpl', 'checkbox-picker-wapper');
+
+			 //修改 datas属性
+			 var options = $scope[optAttr] || ($scope[optAttr]={options: {}});
+			 options.datas = [{id: '1',text: '同意'},{id: '2',text: '不同意'}];
+			 
+			 //也可以定义自己的service从后台获取数据
+			 //options.datas = mockService.list();
+		}
+	}
+});	
+
+</pre>
+</p>
+<p>
+html:
+<pre>
+&lt;form class="form-inline"&gt;
+	&lt;div class="input-group"&gt;
+		&lt;input type="text"
+			ng-model="selects1"
+			ui-select-base="emptyoptions"
+			decision-select-picker
+			data-picker-width="400",
+			data-picker-height="100",
+			data-trigger-selector=":parent:button"
+			class="form-control"
+			/&gt;
+			&lt;span class="input-group-btn"&gt;
+        		&lt;button type="button" class="btn btn-default" &gt;
+        		&lt;i class="glyphicon glyphicon-chevron-down"&gt;&lt;/i&gt;
+        		&lt;/button&gt;
+      		&lt;/span&gt;
+	&lt;/div&gt;
+&lt;/form&gt;
+</pre>
+javascript
+<pre>
+module.controller('exampleController' ,['$scope', 'ngAlert', function($scope, ngAlert){
+	$scope.selects1 = undefined;
+	$scope.emptyoptions = {}
+}])
+</pre>
+</p>
+</div>
+</blockquote>
+<p>
+例子:{{selects1 | json}}
+<form class="form-inline">
+	<div class="input-group">
+		<input type="text"
+			ng-model="selects1"
+			ui-select-base="emptyoptions"
+			decision-select-picker
+			data-picker-width="400",
+			data-picker-height="100",
+			data-single-select="true"
+			data-trigger-selector=":parent:button"
+			class="form-control"
+			/>
+			<span class="input-group-btn">
+        		<button type="button" class="btn btn-default" >
+        		<i class="glyphicon glyphicon-chevron-down"></i>
+        		</button>
+      		</span>
+	</div>
+</form>
+</p>
+<br/>
+
+

@@ -1,0 +1,10 @@
+<form style="padding-top: 10px;">
+	<label class="ui-select-checkbox-inline checkbox-inline" ng-repeat="item in selectPicker.datas">
+	  <input 
+	  type="checkbox"
+	  class="select-item checkbox-select-item"
+	  text="{{item.__text__}}"
+	  value="{{item.__id__}}">
+	  {{item.__text__}}
+	</label>
+</form>

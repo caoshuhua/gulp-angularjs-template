@@ -1,0 +1,190 @@
+<blockquote>
+  <p>1、配置说明</p>
+  <div class="well well-lg">
+	  <ol>
+	   <li>template: [string]: 模板ID / 模板内容:
+	   <p>当plain=true时 则代表模板内容; 否则为模板id, 如果为模板ID，
+	   当前ID值必须是 $templateCache中的key, 所以模板必须要缓存在$templateCache中, 如果将模板内容存放中$templateCache中呢？ 有两种方式：1. $templateCache.put('templateId', 'templateContent')。 2. 第二种方式可以在页面中定义如下片段
+	   	<pre>
+&lt;script type="text/ng-template" id="templateId"&gt;
+&lt;h1&gt;Template heading&lt;/h1&gt;
+&lt;p&gt;Content goes here&lt;/p&gt;
+&lt;/script&gt;
+		</pre>
+		</p>
+	   <li>plain: [boolean] 默认false:
+			<p>
+				详见template属性说明,例如
+				<pre>
+ngDialog.open({
+    template: '&lt;p&gt;my template&lt;/p&gt;',
+    plain: true
+});	
+ngDialog.open({
+    template: 'templateId',
+    plain: false
+});
+
+				</pre> 
+			</p>
+	   </li>
+	   </li>
+       <li>className: 'ngdialog-theme-default' 设置窗口最外层div的样式, 例如
+			<p>
+				<pre>
+&lt;div id="ngdialog1" class="ngdialog ngdialog-theme-default" &gt;
+	&lt;div class="ngdialog-overlay"&gt;&lt;/div&gt;
+	&lt;div class="ngdialog-content" role="document" style="width: 800px;"&gt;
+	&lt;div class="modal-header"&gt;&lt;div class="modal-body" style="height: 350px;"&gt;&lt;/div&gt;
+	&lt;div class="modal-footer"&gt;&lt;/div&gt;
+&lt;div class="ngdialog-close"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+				</pre>
+			</p>
+       </li>
+	   <li>appendClassName: 'ngdialog-custom': 和className不同的是： appendClassName是追加样式类，而className则是替换</li>
+	   <li>disableAnimation: [boolean] 默认false, 是否禁用动画模式</li>
+	   <li>showClose: [boolean] 默认false，是否显示右上角关闭按钮</li>
+	   <li>closeByDocument: [boolean] 默认false: 点击背景层时是否关闭窗口</li>
+	   <li>closeByEscape: [boolean] 默认false: 禁用ESC键</li>
+	   <li>closeByNavigation: [boolean] 默认true: 地址栏发生变化时 是否关闭窗口</li>
+	   <li>appendTo: [#yourId, .yourClass] 默认false：指定dialog Element被加入的容器节点， 默认body</li>
+	   <li>preCloseCallback: [function],  窗口关闭之前将会执行preCloseCallback函数，如果返回fase，则窗口不会关闭, 该方法会接受一个value值，该值是窗口回传的值, 详细说明如下:
+	   <pre>
+ngDialog会向当前$scope中加入closeThisDialog方法， 这样我们就可以在template中直接通过ng-click="closeThisDialog(returnValue)"的方式关闭窗口：returnValue可以是$scope的model属性，也可以是常量字符串ng-click="closeThisDialog('returnValue')"<br/>
+ngDialog.open({
+	...options
+}).closePromise.then(function(returnData){
+var returnValue = returnData.value;//returnData.value就是窗口返回给我们的值
+})
+		</pre>
+       
+	   </li>
+	   <li>overlay: [boolean] 默认true: 是否显示遮罩层</li>
+	   <li>cache: [boolean] 默认true: 是否缓存模板</li>
+	   <li>bodyClassName: 'ngdialog-open': 当窗口打开之后 ngDialog会向appendTo Dom (默认是body) 
+	   加入bodyClassName属性指定的样式</li>
+	   <li>width: [Number] 默认 null: 指定窗口宽度</li>
+	   <li>scope: [angular Scope] 默认 null: 如果指定的话 我们可以再窗口$scope.$parent中拿到该值</li>
+	   <li>data: 任何可以被序列化的类型对象，默认 null: 如果指定的话 我们可以再窗口$scope.ngDialogData中拿到该值</li>
+	   <li>resolve: 详见下面demo</li>
+    </ol>
+  </div>
+</blockquote>
+
+<blockquote>
+  <p>2、框架配置说明App.$dialog.config.js</p>
+  <div class="well well-lg">
+<pre>
+define(['angular', 'App.module'], function(angular, module){
+return module.config(['ngDialogProvider',function(ngDialogProvider) {
+	ngDialogProvider.setDefaults({
+        className: 'ngdialog-theme-default',
+       	plain: false,
+        showClose: true,
+        closeByDocument: false,
+        closeByEscape: false,
+        appendTo: false,
+        overlay: true,
+        plain: false,
+        closeByNavigation: true //true: 当路由变化时，窗口会关闭
+	});
+}])
+})
+</pre>
+  </div>
+  
+</blockquote>
+
+
+
+<blockquote>
+	<p>
+	<b>3、例子</b>
+	<div class="well well-lg">
+	    <p>HTML</p>
+<script type="text/ng-template" id="demo-templateId.html">
+   <a href="" ng-click="openDialog()"></a>
+</script>
+
+<script type="text/ng-template" id="dialog-templateId.html">
+   <a href="" ng-click="closeThisDialog(returnValue)">关闭</a>
+</script>
+		<pre>
+&lt;script type="text/ng-template" id="demo-templateId.html"&gt;
+   &lt;a href="" ng-click="openDialog()"&gt;&lt;/a&gt;
+&lt;/script&gt;
+
+&lt;script type="text/ng-template" id="dialog-templateId.html"&gt;
+   &lt;a href="" ng-click="clsoeThisDialog(returnValue)"&gt;&lt;/a&gt;
+&lt;/script&gt;		
+
+		</pre>
+		<p>javascript</p>
+		<pre>
+module.controller('demoController', ['$scope', 'ngDialog', DemoController])
+	.controller('dialogController', ['$scope', 'resolveKey1', 'resolveKey2', DialogController]);
+
+function DemoController($scope, ngDialog){
+	
+	$scope.openDialog = function(){
+		ngDialog.open({
+		template: 'dialog-templateId.html',
+		controller: 'dialogController',
+		resolve: {
+			resolveKey1: function(){
+				return '123';
+			},
+			resolveKey2: function(){
+				return '456';
+			}
+		}
+		}).closePromise.then(function(data){
+			alert(data.value);
+		})
+	}
+}
+
+function DialogController($scope, resolveKey1, resolveKey2){
+	$scope.returnValue = 'hello word';
+}
+		</pre>
+	</div>
+	<footer>例子: 
+		<a href="" class="btn btn-default" role="button" ng-click="openDialog()">
+			<cite title="点击测试">点击测试</cite>
+		</a>
+	</footer>
+  </p>
+</blockquote>
+<blockquote>
+	<p>
+	<b>4、例子: 指令模式</b>
+	<div class="well well-lg">
+	    <p>HTML</p>
+		<pre>
+&lt;a href="" 
+class="btn btn-default" 
+role="button" 
+ng-dialog="dialog-templateId.html"
+ng-dialog-scope = "ngDialogScope"
+ng-dialog-controller="dialogDirDemoController"&gt;
+  &lt;cite title="点击测试"&gt;点击测试&lt;/cite&gt;
+&lt;/a&gt;
+		</pre>
+		<p>javascript</p>
+		<pre>
+
+		</pre>
+	</div>
+	<footer>例子: 
+		<a href="" 
+		class="btn btn-default" 
+		role="button" 
+		ng-dialog="dialog-templateId.html"
+		ng-dialog-scope = "ngDialogScope"
+		ng-dialog-controller="dialogDirDemoController">
+			<cite title="点击测试">点击测试</cite>
+		</a>
+	</footer>
+  </p>
+</blockquote>

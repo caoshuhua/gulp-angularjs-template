@@ -1,0 +1,96 @@
+<div cg-busy="{promise:savePromise.$promise ,templateUrl:'app/pages/ui/busy/template/inoperating.html'}">
+<form class="form-horizontal" name="userAddForm" novalidate="novalidate">
+  <div class="modal-header">
+    <h4 class="modal-title">新增用户</h4>
+  </div>
+  <div class="modal-body">
+      <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group"
+              ng-class="{'has-error': (userAddForm.username.$invalid && (userAddForm.username.$dirty || userAddForm.$submitted))}">
+              <label class="col-sm-3 control-label"><span>*</span>用户名:</label>
+              <div class="col-sm-9">
+                  <input type="text" class="form-control" 
+                    name="username" ng-model="user.username" required="required">
+                  <span class="help-block error-block basic-block">必填项, 用户名不能重复</span>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group"
+              ng-class="{'has-error': (userAddForm.name.$invalid && (userAddForm.name.$dirty || userAddForm.$submitted))}">
+              <label class="col-sm-3 control-label"><span>*</span>名称:</label>
+              <div class="col-sm-9">
+                 <input type="text" class="form-control" 
+                    name="name" ng-model="user.name" required="required">
+                 <span class="help-block error-block basic-block">必填项</span>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group"
+              ng-class="{'has-error': (userAddForm.post.$invalid && (userAddForm.post.$dirty || userAddForm.$submitted))}">
+              <label class="col-sm-3 control-label"><span>*</span>职位:</label>
+              <div class="col-sm-9">
+                  <input type="text" class="form-control" 
+                      name="post" ng-model="user.post" required="required">
+                  <span class="help-block error-block basic-block">必填项</span>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group"
+              ng-class="{'has-error': (userAddForm.role.$invalid && (userAddForm.role.$dirty || userAddForm.$submitted))}">
+              <label class="col-sm-3 control-label"><span>*</span>角色:</label>
+              <div class="col-sm-9">
+                  <input type="text" class="form-control" 
+                      name="role" ng-model="user.role" required="required">
+                  <span class="help-block error-block basic-block">必填项</span>
+              </div>
+            </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group"
+              ng-class="{'has-error': (userAddForm.email.$invalid && (userAddForm.email.$dirty || userAddForm.$submitted))}">
+              <label class="col-sm-3 control-label"><span>*</span>邮箱地址:</label>
+              <div class="col-sm-9">
+                  <input type="email" class="form-control" 
+                      name="email" ng-model="user.email" required="required">
+                  <span class="help-block error-block basic-block">必填项, 请输入正确的邮箱格式</span>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group"
+              ng-class="{'has-error': (userAddForm.location.$invalid && (userAddForm.location.$dirty || userAddForm.$submitted))}">
+              <label class="col-sm-3 control-label"><span>*</span>地区:</label>
+              <div class="col-sm-9">
+                  <input type="text" class="form-control" 
+                      name="location" ng-model="user.location" required="required">
+                  <span class="help-block error-block basic-block">必填项</span>
+              </div>
+            </div>
+        </div>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-default btn-with-icon"
+      ng-click="closeThisDialog()">
+      <i class="ion-close-round"></i>取消
+    </button>
+    <button type="submit" class="btn btn-info btn-with-icon"
+      ng-click="userAddForm.$valid && save()">
+      <i class="ion-checkmark-circled"></i>保存
+    </button>
+</div>
+</form>
+</div>

@@ -1,0 +1,107 @@
+<blockquote>
+<div class="well well-lg">
+<p>Html
+<pre>
+已选择(selects1 | json)
+&lt;form class="form-inline"&gt;
+	&lt;div class="input-group"&gt;
+		&lt;input type="text"
+			ng-model="selects1"
+			ui-select-base="selectTreeoptions"
+			data-picker-width="400",
+			data-picker-height="230",
+			data-single-select="false" //多选
+			data-template-tpl="tree-picker-wapper" //tree picker
+			data-trigger-selector=":parent:button"
+			class="form-control"
+			/&gt;
+			&lt;span class="input-group-btn"&gt;
+        		&lt;button type="button" class="btn btn-default" &gt;
+        		&lt;i class="glyphicon glyphicon-chevron-down"&gt;&lt;/i&gt;
+        		&lt;/button&gt;
+      		&lt;/span&gt;
+	&lt;/div&gt;
+&lt;/form&gt;	
+</pre>
+javascript
+<pre>
+angular.controller('demoController', ['$scope', function($scope){
+	$scope.selects1 = {};
+	$scope.selectTreeoptions = {
+	datas: [
+		{id: 'a001', text: '中国', children: [
+			{id: '11', text: '上海', children: false},
+			{id: '12', text: '深圳', children: false},
+			{id: '13', text: '北京', children: false},
+			{id: '14', text: '江苏', children: false},
+			{id: '15', text: '安徽', children: false}
+		]},
+		{id: '2', text: '其他', children: [
+			{id: '21', text: '日本', children: false},
+			{id: '22', text: '韩国', children: false},
+			{id: '23', text: '朝鲜', children: false},
+			{id: '24', text: '越南', children: false},
+			{id: '25', text: '缅甸', children: false}
+		]}
+	]
+};
+
+}])
+	
+</pre>
+</p>
+</div>
+</blockquote>
+
+<p>
+多选({{selects1 | json}})
+<form class="form-inline">
+	<div class="input-group">
+		<input type="text"
+			ng-model="selects1"
+			ui-select-base="selectTreeoptions"
+			data-picker-width="400",
+			data-picker-height="230",
+			data-single-select="false"
+			tree-select-picker
+			data-trigger-selector=":parent:button"
+			class="form-control"
+			/>
+			<span class="input-group-btn">
+        		<button type="button" class="btn btn-default" >
+        		<i class="glyphicon glyphicon-chevron-down"></i>
+        		</button>
+      		</span>
+	</div>
+</form>
+</p>
+<p>
+单选({{selects2 | json}})
+<form class="form-inline">
+	<div class="input-group">
+		<input type="text"
+			ng-model="selects2"
+			ui-select-base="selectTreeoptions"
+			data-picker-width="400",
+			data-picker-height="230",
+			data-single-select="true"
+			tree-select-picker
+			data-trigger-selector=":parent:button"
+			class="form-control"
+			/>
+			<span class="input-group-btn">
+        		<button type="button" class="btn btn-default" >
+        		<i class="glyphicon glyphicon-chevron-down"></i>
+        		</button>
+      		</span>
+	</div>
+</form>
+</p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>

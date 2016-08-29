@@ -1,0 +1,30 @@
+<blockquote>
+	<p>
+	<b>ngConfirm使用说明</b>
+	<div class="well well-lg">
+ngConfirm是一个angular service function, 使用规范如下:
+		<pre>
+ngConfirm(message, fn, title, okText, cancelText), 
+书写方式有两种
+例如:
+1.  ngConfirm('确认要操作吗?', function(res){
+		alert(res);
+ 	})
+
+2.  ngConfirm('确认要操作吗?').then(function(res){
+		alert(res.value);
+    })
+		</pre>
+	</div>
+	<footer>例子: 
+		<a href="" class="btn btn-default" role="button" ng-click="openConfirm1()">
+			<cite title="点击测试">方式1</cite>
+		</a>
+
+		<a href="" class="btn btn-default" role="button" ng-click="openConfirm2()">
+			<cite title="点击测试">方式2</cite>
+		</a>
+		
+	</footer>
+  </p>
+</blockquote>

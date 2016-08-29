@@ -1,0 +1,414 @@
+<form class="form-horizontal" novalidate="novalidate">
+<div ba-panel ba-panel-class="profile-page">
+  <div class="panel-content">
+	
+	<h3 class="with-line">合同基本信息</h3>
+	<div class="social-profiles row clearfix">
+      <div class="col-md-3 col-sm-4" ng-repeat="item in socialProfiles">
+
+        <a class="sn-link connected"  style="margin-bottom: 3px;" href="javascript:void(0)">
+          <i class="socicon {{ item.icon }}" style="font-size: 10px;"></i>
+          <span style="font-size: 10px;">{{ item.name }}:{{item.value}}</span>
+        </a>
+      </div>
+    </div>
+
+    <h3 class="with-line">合同表单项</h3>
+	<div class="row">
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputFirstName" class="col-sm-3 control-label">二维码</label>
+
+          <div class="col-sm-9">
+            <div class="userpic">
+              <div class="userpic-wrapper">
+                <img ng-src="{{qrcodeurl}}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+	
+	<div class="row">
+      <div class="col-md-5">
+        <div class="form-group row clearfix has-feedback">
+          <label for="inputFirstName" class="col-sm-4 control-label">单据日期</label>
+		  <div class="col-sm-8">
+            <input type="text"
+	                  ng-model="orderInfo.createDate"
+	                  ui-select-base="options3"
+	                  data-picker-height="320"
+	                  data-picker-width="270"
+	                  date-select-picker
+	                  class="form-control"
+		              />
+	              <i class="ion-navicon-round form-control-feedback" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="form-group row clearfix">
+          <label for="inputLastName" class="col-sm-4 control-label">供货方名称</label>
+		  <div class="col-sm-8">
+            <input type="text" class="form-control" ng-model="orderInfo.ghfuser" ng-ui-autocomplete="options1" ui-ghf-autocomplete>
+          </div>
+        </div>
+
+       <div class="form-group row clearfix">
+	          <label for="inputLastName" class="col-sm-4 control-label">发货仓库名称</label>
+
+	          <div class="col-sm-8">
+	            <input type="text" class="form-control" ng-model="orderInfo.fhstore" ui-fhsh-autocomplete ng-ui-autocomplete="options2">
+	          </div>
+	    </div>
+    
+
+		<div class="form-group row clearfix has-feedback">
+	          <label for="inputLastName" class="col-sm-4 control-label">首配交货日期</label>
+			  <div class="col-sm-8">
+	            	<input type="text"
+	                  ng-model="orderInfo.deliveryDate"
+	                  ui-select-base="options3"
+	                  data-picker-height="320"
+	                  data-picker-width="270"
+	                  date-select-picker
+	                  end-date="orderInfo.lastDeliveryDate"
+	                  class="form-control"
+		              />
+	              <i class="ion-navicon-round form-control-feedback" aria-hidden="true"></i>
+	          </div>
+	    </div>
+			
+		<div class="form-group row clearfix has-feedback">
+	          <label for="inputLastName" class="col-sm-4 control-label">最后交货日期</label>
+
+	          <div class="col-sm-8">
+	            	<input type="text"
+	                  ng-model="orderInfo.lastDeliveryDate"
+	                  ui-select-base="options4"
+	                  data-picker-height="320"
+	                  data-picker-width="270"
+	                  date-select-picker
+	                  start-date="orderInfo.deliveryDate"
+	                  class="form-control"
+		              />
+	              <i class="ion-navicon-round form-control-feedback" aria-hidden="true"></i>
+	          </div>
+	       
+	     </div>
+
+	     <div class="form-group row clearfix has-feedback">
+	          <label for="inputLastName" class="col-sm-4 control-label">合同签订日期</label>
+
+	          <div class="col-sm-8">
+	            	<input type="text"
+	                  ng-model="orderInfo.contractSigningDate"
+	                  ui-select-base="options5"
+	                  data-picker-height="320"
+	                  data-picker-width="270"
+	                  date-select-picker
+	                  class="form-control"
+		              />
+	              <i class="ion-navicon-round form-control-feedback" aria-hidden="true"></i>
+	          </div>
+	        
+	     </div>
+
+	     <div class="form-group row clearfix has-feedback">
+	          <label for="inputLastName" class="col-sm-4 control-label">上市日期</label>
+
+	          <div class="col-sm-8">
+	            <input type="text"
+	                  ng-model="orderInfo.launchDate"
+	                  ui-select-base="options6"
+	                  data-picker-height="320"
+	                  data-picker-width="270"
+	                  date-select-picker
+	                  class="form-control"
+		              />
+	              <i class="ion-navicon-round form-control-feedback" aria-hidden="true"></i>
+	          </div>
+	       
+	     </div>
+
+	     <div class="form-group row clearfix">
+	          <label for="inputLastName" class="col-sm-4 control-label">是否撤销</label>
+
+	          <div class="col-sm-8">
+	            <select class="form-control selectpicker" 
+                    selectpicker
+                    ng-options="item as item.label for item in options7 track by item.id"
+                    futures-contract-revocation-states-picker-datas
+                    ng-model="orderInfo.isCancel">
+                    <option value="" checked>--</option>
+                  </select>
+	          </div>
+	       
+	     </div>
+
+	     <div class="form-group row clearfix">
+	          <label for="inputLastName" class="col-sm-4 control-label">商品属性</label>
+
+	          <div class="col-sm-8">
+	            <select class="form-control selectpicker" 
+                    selectpicker
+                    ng-options="item as item.label for item in options8 track by item.id"
+                    good-attributes-picker-datas
+                    ng-model="orderInfo.goodAttributes">
+                    <option value="" checked>--</option>
+                  </select>
+	          </div>
+	       
+	     </div>
+		
+		<div class="form-group row clearfix">
+	          <label for="inputLastName" class="col-sm-4 control-label">上市批次</label>
+			  <div class="col-sm-8">
+	             <select class="form-control selectpicker" 
+                    selectpicker
+                    ng-options="item as item.label for item in options9 track by item.id"
+                    launch-batch-picker-datas
+                    ng-model="orderInfo.launchBatch">
+                    <option value="" checked>--</option>
+                  </select>
+	          </div>
+	    </div>
+
+	     <div class="form-group row clearfix">
+	          <label for="inputLastName" class="col-sm-4 control-label">变更状态</label>
+
+	          <div class="col-sm-8">
+	            <select class="form-control selectpicker" 
+                    selectpicker
+                    ng-options="item as item.label for item in options10 track by item.id"
+                    contract-change-states-picker-datas
+                    ng-model="orderInfo.chanageState">
+                    <option value="" checked>--</option>
+                  </select>
+	          </div>
+	        
+	     </div>
+
+	     <div class="form-group row clearfix">
+	          <label for="inputLastName" class="col-sm-4 control-label">转让状态</label>
+
+	          <div class="col-sm-8">
+	            <select class="form-control selectpicker" 
+                    selectpicker
+                    ng-options="item as item.label for item in options11 track by item.id"
+                    contract-transfer-states-picker-datas
+                    ng-model="orderInfo.transferState">
+                    <option value="" checked>--</option>
+                  </select>
+	          </div>
+	        
+	     </div>
+
+	     <div class="form-group row clearfix">
+	          <label for="inputLastName" class="col-sm-4 control-label">生成期货订单</label>
+
+	          <div class="col-sm-8">
+	            <select class="form-control selectpicker" 
+                    selectpicker
+                    ng-options="item as item.label for item in options12 track by item.id"
+                    futures-contract-states-picker-datas
+                    ng-model="orderInfo.generateState">
+                    <option value="" checked>--</option>
+                  </select>
+	          </div>
+	        
+	     </div>
+	</div>
+
+    <!-- two colums -->
+	<div class="col-md-7">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group row clearfix has-feedback">
+		          <label for="inputFirstName" class="col-sm-6 control-label">货期</label>
+				  <div class="col-sm-6">
+		            <input type="text"
+	                  ng-model="orderInfo.goodDeliveryDate"
+	                  ui-select-base="options6"
+	                  data-picker-height="320"
+	                  data-picker-width="270"
+	                  date-select-picker
+	                  class="form-control"
+		              />
+	              <i class="ion-navicon-round form-control-feedback" aria-hidden="true"></i>
+		          </div>
+		        </div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group row clearfix">
+		          <label for="inputFirstName" class="col-sm-6 control-label">品牌</label>
+				  <div class="col-sm-6">
+		            <select class="form-control selectpicker" 
+                    selectpicker
+                    ng-options="item as item.label for item in options15 track by item.id"
+                    brands-bsselect-picker-datas
+                    ng-model="orderInfo.brand">
+                    <option value="" checked>--</option>
+                  </select>
+		          </div>
+		        </div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group row clearfix">
+		          <label for="inputFirstName" class="col-sm-6 control-label">品项数</label>
+				  <div class="col-sm-6">
+		            <input type="number" class="form-control">
+		          </div>
+		        </div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group row clearfix">
+		          <label for="inputFirstName" class="col-sm-6 control-label">币种</label>
+				  <div class="col-sm-6">
+		            <select class="form-control selectpicker" 
+	                    selectpicker
+	                    ng-options="item as item.label for item in options16 track by item.id"
+	                    currency-picker-datas
+	                    ng-model="orderInfo.xcurrent">
+	                    <option value="" checked>--</option>
+	                  </select>
+		          </div>
+		        </div>
+			</div>
+		</div>
+
+        <div class="row">
+			<div class="col-md-6">
+				<div class="form-group row clearfix">
+		          <label for="inputFirstName" class="col-sm-6 control-label">合同数</label>
+				  <div class="col-sm-6">
+		            <input type="number" class="form-control">
+		          </div>
+		        </div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group row clearfix">
+		          <label for="inputFirstName" class="col-sm-6 control-label">合同金额</label>
+				  <div class="col-sm-6">
+		            <input type="number" class="form-control">
+		          </div>
+		        </div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group row clearfix">
+		          <label for="inputFirstName" class="col-sm-6 control-label">片区</label>
+				  <div class="col-sm-6">
+		            <input type="text" class="form-control">
+		          </div>
+		        </div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group row clearfix">
+		          <label for="inputFirstName" class="col-sm-6 control-label">单位</label>
+				  <div class="col-sm-6">
+		            <input type="text" class="form-control">
+		          </div>
+		        </div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group row clearfix">
+		          <label for="inputFirstName" class="col-sm-6 control-label">商品年份</label>
+				  <div class="col-sm-6">
+		            <input type="text" class="form-control">
+		          </div>
+		        </div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group row clearfix">
+		          <label for="inputFirstName" class="col-sm-6 control-label">商品季节</label>
+				  <div class="col-sm-6">
+		            <input type="text" class="form-control">
+		          </div>
+		        </div>
+			</div>
+		</div>
+        
+        <div class="form-group row clearfix">
+	          <label for="inputLastName" class="col-sm-3 control-label">购货方名称</label>
+
+	          <div class="col-sm-9">
+	            <input type="text" class="form-control" ng-model="orderInfo.gonghstore" ui-fhsh-autocomplete ng-ui-autocomplete="options17">
+	          </div>
+	    </div>
+			
+		<div class="form-group row clearfix">
+	          <label for="inputLastName" class="col-sm-3 control-label">订货门店名称</label>
+
+	          <div class="col-sm-9">
+	            <input type="text" class="form-control" ng-model="orderInfo.dinghstore" ui-fhsh-autocomplete ng-ui-autocomplete="options18">
+	          </div>
+	        
+	     </div>
+
+	    
+		<div class="form-group row clearfix">
+	          <label for="inputLastName" class="col-sm-3 control-label">接收仓库名称</label>
+
+	          <div class="col-sm-9">
+	            <input type="text" class="form-control" ng-model="orderInfo.xunistore" ui-fhsh-autocomplete ng-ui-autocomplete="options19">
+	          </div>
+	       
+	     </div>
+
+	    <div class="form-group row clearfix">
+	          <label for="inputLastName" class="col-sm-3 control-label">虚拟仓库名称</label>
+
+	          <div class="col-sm-9">
+	            <input type="text" class="form-control" ng-model="orderInfo.xunistore" ui-fhsh-autocomplete ng-ui-autocomplete="options20">
+	          </div>
+	       
+	     </div>
+
+	     <div class="form-group row clearfix">
+	          <label for="inputLastName" class="col-sm-3 control-label">送货地址</label>
+
+	          <div class="col-sm-9">
+	            <input type="text" class="form-control">
+	          </div>
+	        
+	     </div>
+	</div>
+	<!-- end two colums-->
+    </div>
+	<div class="row">
+		<div class="col-md-12">
+		 <div class="form-group row clearfix">
+	          <label for="inputLastName" class="col-sm-1 control-label">备注</label>
+
+	          <div class="col-sm-11">
+	            <textarea class="form-control" style="width: calc(100% - 42px); height: 80px;resize:none" >
+	            </textarea>
+	          </div>
+	        
+	     </div>
+	     </div>
+	</div>
+
+	<h3 class="with-line">明细</h3>
+    	<div class="row">
+        
+		</div>
+	 </div>
+
+	 <button type="button" class="btn btn-default btn-with-icon save-profile" ng-click="closeDialog()">
+      <i class="ion-android-checkmark-circle"></i>关闭
+    </button>
+    <button type="button" class="btn btn-primary btn-with-icon save-profile" ng-click="doSave()">
+      <i class="ion-android-checkmark-circle"></i>保存
+    </button>
+</div>
+</form>

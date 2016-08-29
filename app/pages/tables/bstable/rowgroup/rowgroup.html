@@ -1,0 +1,42 @@
+<p>
+你的选择:{{tableSelectedData}}
+
+</p>
+<table 
+	ng-model="tableDatas"
+	data-show-pagination-info="true"
+	bs-table-control="tableOptions"
+	data-single-select="false"
+	data-row-group="types"
+    selected-bind="tableSelectedData"
+    data-selected-bind-enable="true"
+    data-detail-view="true"
+    data-detail-tpl="app/pages/samplepage/crud/detail.html"
+	>
+    <thead>
+    <tr>
+        <th data-field="id" rowspan="2" data-checkbox="true"></th>
+        <th data-field="brand" 
+            rowspan="2"
+            data-sortable="true" 
+            data-align="center" 
+            data-valign="middle">品牌</th>
+
+        <th colspan="2"
+            data-align="center" 
+            data-valign="middle">宣传分类</th>
+    </tr>
+    <tr>
+            
+        <th data-field="size1" 
+            data-align="center" 
+            data-row-gp-path="types"
+            data-valign="middle">统一尺寸商品</th>
+
+        <th data-field="size2" 
+            data-align="center"
+            data-row-gp-path="types"
+            data-valign="middle">具体尺寸商品</th>
+    </tr>
+    </thead>
+</table>

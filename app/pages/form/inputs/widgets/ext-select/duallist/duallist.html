@@ -1,0 +1,149 @@
+<blockquote>
+<div class="well well-lg">
+配置
+<p>
+Duallistbox控件抽象出三个部分dualbox、template 、controller:<br/>
+1. dualbox 是个基础类, 主要负责控件配置数据的格式化、事件绑定、弹出或关闭窗口<br/>
+2.template: 窗口显示的内容模板, 详细配置见directives/select/dualpicker/base/*.html<br/>
+3.controller: 对应template范围的controller, 用户完成具体处理逻辑<br/>
+
+对于这三部分来说，实际扩展中我们主要是设计template controller, 更多时候内置的
+controller是可以复用的，我们只需要根据应用场景实际出不同的template就可以了, template设计很简单，直接拷贝内置模板，然后根据具体业务修改对应的属性配置就可以了
+<pre>
+containParentNode: 是否包含父节点
+singleSelect: false,//是否单选
+idFiled: 'id',
+textField: 'name',
+triggerSelector: ':self',//触发元素
+pickerHeight: undefined,//窗口高度
+pickerWidth: undefined,//窗口宽度
+template: undefined,//模板: 详见directives/select/dualpicker/base/*
+controller: undefined,//controller
+textNgResource: undefined,//配置加载文本内容的接口
+
+</pre>
+
+</p>
+<p>Html
+<pre>
+(selects1 | json)
+&lt;form class="form-inline"&gt;
+	&lt;div class="input-group"&gt;
+		&lt;input type="text"
+			ng-model="selects1"
+			ui-select-duallist="selectDuallistOptions"
+			data-trigger-selector=":parent:button"
+			data-picker-width = "900"
+			data-picker-height = "400"
+			class="form-control"
+			/&gt;
+			&lt;span class="input-group-btn"&gt;
+        		&lt;button type="button" class="btn btn-default" &gt;
+        		&lt;i class="glyphicon glyphicon-chevron-down"&gt;&lt;/i&gt;
+        		&lt;/button&gt;
+      		&lt;/span&gt;
+	&lt;/div&gt;
+&lt;/form&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+(selects2 | json)
+&lt;form class="form-inline"&gt;
+	&lt;div class="input-group"&gt;
+		&lt;input type="text"
+			ng-model="selects2"
+			ui-select-duallist="selectDuallistOptions2"
+			data-trigger-selector=":parent:button"
+			data-picker-width = "600"
+			data-picker-height = "400"
+			class="form-control"
+			/&gt;
+			&lt;span class="input-group-btn"&gt;
+        		&lt;button type="button" class="btn btn-default" &gt;
+        		&lt;i class="glyphicon glyphicon-chevron-down"&gt;&lt;/i&gt;
+        		&lt;/button&gt;
+      		&lt;/span&gt;
+	&lt;/div&gt;
+&lt;/form&gt;
+</pre>
+javascript
+<pre>
+controller: ['$scope', 'ngAlert', 'MockService', function($scope, ngAlert, mockService){
+			$scope.selects1 = ['mock_table_8', 'mock_table_38', 'mock_table_58', 'mock_table_73', 'mock_table_74'];
+			$scope.selectDuallistOptions = {
+				options:{
+					singleSelect: false,
+					idField: 'id',
+					textField: 'column1',
+					chosenType: 'table',
+					template: 'demo-duallist-table.html',
+					controller: 'demoDuallistTableConTroller',
+					textNgResource: mockService.texts
+				}
+
+			};
+
+			$scope.selects2 = undefined;
+
+			$scope.selectDuallistOptions2 = {
+				options:{
+					singleSelect: false,
+					containParentNode: true,
+					idField: 'id',
+					textField: 'text',
+					template: 'demo-duallist-tree.html',
+					controller: 'demoDuallistTreeConTroller',
+					textNgResource: mockService.texts
+				}
+
+			};
+		}]
+</pre>
+</p>
+</div>
+</blockquote>
+<p>
+Table ({{selects1 | json}}) <br/>
+<form class="form-inline">
+	<div class="input-group">
+		<input type="text"
+			ng-model="selects1"
+			ui-select-duallist="selectDuallistOptions"
+			data-trigger-selector=":parent:button"
+			data-picker-width = "900"
+			data-picker-height = "400"
+			class="form-control"
+			/>
+			<span class="input-group-btn">
+        		<button type="button" class="btn btn-default" >
+        		<i class="glyphicon glyphicon-chevron-down"></i>
+        		</button>
+      		</span>
+	</div>
+</form>
+</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<p>
+Tree ({{selects2 | json}}) <br/>
+<form class="form-inline">
+	<div class="input-group">
+		<input type="text"
+			ng-model="selects2"
+			ui-select-duallist="selectDuallistOptions2"
+			data-trigger-selector=":parent:button"
+			data-picker-width = "600"
+			data-picker-height = "400"
+			class="form-control"
+			/>
+			<span class="input-group-btn">
+        		<button type="button" class="btn btn-default" >
+        		<i class="glyphicon glyphicon-chevron-down"></i>
+        		</button>
+      		</span>
+	</div>
+</form>
+</p>
+<br/>
+<br/>

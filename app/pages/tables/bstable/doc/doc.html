@@ -1,0 +1,421 @@
+<blockquote>
+  <p>1、配置说明: (详细属性请参考http://issues.wenzhixin.net.cn/bootstrap-table/,源码详见https://github.com/wenzhixin/bootstrap-table)</p>
+  <div class="well well-lg">
+	  <ol>
+	   <li>classes: 默认值'table table-hover':<br/> 
+	   		<p>该属性指定的样式类会被加入table dom class上</p>
+	   		<pre>
+&lt;table class="table table-hover" style="width: 1121px;"&gt;
+.....
+&lt;/table&gt; 	
+	  		</pre>
+		</li>
+
+		<li>locale: 国际化:<br/> 
+	   		<p>当引入bootstrap-table-zh-CN.js时，会自动设置该参数, 例如bootstrap-table-zh-CN.js最后一行代码: </p>
+	   		<pre>
+ $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['zh-CN']);
+	  		</pre>
+		</li>
+
+		<li>height: [Number]设置表格的高度<br/> 
+	   		<p>其实就是设置div..fixed-table-container的高度，计算方法为: height = this.options.height - toolbarHeight - paginationHeight。 
+	   		bootstrap-table 对应的dom结构如下</p>
+	   		<pre>
+&lt;div class="bootstrap-table"&gt;
+	&lt;div class="fixed-table-toolbar"&gt;&lt;/div&gt;
+	&lt;div class="fixed-table-container"&gt;&lt;/div&gt;
+	&lt;div class="fixed-table-header"&gt;&lt;/div&gt;
+	&lt;div class="fixed-table-body"&gt;&lt;/div&gt;
+	&lt;div class="fixed-table-footer"&gt;&lt;/div&gt;
+	&lt;div class="fixed-table-pagination"&gt;&lt;/div&gt;
+&lt;/div&gt;
+	  		</pre>
+		</li>
+		<li>undefinedText: 默认值为'-': 
+			<p>当 单元格的值满足(typeof value === 'undefined' || value === null)表达式为true时，对应的单元格会用-代替</p>
+		</li>
+		<li>showPaginationInfo: [boolean],默认为false: 是否显示分页信息</li>
+		<li>sortName: 默认值为undefined: 
+			<p>指定起始排序字段，当点击sortable 为true的列时，该值会被覆盖为当前列的值 </p>
+		</li>
+        <li>sortOrder: 默认值为asc: 
+			<p>指定起始排序类型，当点击sortable 为true的列时，该值会被覆盖为当前列的值 </p>
+		</li>
+     	<li>striped: 默认值为false: 
+			<p>是否启用换行色</p>
+		</li>
+        <li>columns: 默认值为[[]]: 
+			<p>可以通过代码来配置列，也可以通过html的方式配置列信息, 如果两者同时存在时,columns配置优先,
+			注意两者不是覆盖，而是属性替换</p>
+		</li>
+        <li>data: 表格数据: 
+			<p>*</p>
+		</li>
+        <li>dataField: 结果集数据字段,默认为rows: 
+			<p>例如服务端返回的数据结果:{rows: [], total: 100}</p>
+		</li>
+        <li>method: 默认为 get: 
+			<p>*</p>
+		</li>
+        <li>url: 默认undefined
+			<p>*</p>
+		</li>
+		<li>ajax: 默认undefined
+			<p>指定自定义ajax服务对象</p>
+		</li>
+        <li>cache: 默认true
+			<p>是否启用jQuery.ajax缓存</p>
+		</li>
+        <li>contentType: 默认 'application/json' 
+			<p>设定ajax发送的数据类型</p>
+		</li>
+        <li>dataType: 默认 'json' 
+			<p>设置服务端返回的数据类型</p>
+		</li>
+		<li>ajaxOptions: 默认 {}
+			<p>设置ajax参数</p>
+		</li>
+		<li>pagination: 默认 false
+			<p>是否启用扉页</p>
+		</li>
+		<li>onlyInfoPagination: 默认false,
+			<p>是否仅显示分页信息</p>
+		</li>
+        <li>sidePagination: 默认client,
+			<p>设置分页模式： 服务端 还是server 客户端client</p>
+		</li>
+		<li> 这些属性都是应该设置分页参数的
+		 <pre>
+totalRows: 0, 
+pageNumber: 1,
+pageSize: 10,
+pageList: [10, 25, 50, 100],
+paginationHAlign: 'right', //right, left
+paginationVAlign: 'bottom', //bottom, top, both
+paginationDetailHAlign: 'left', //right, left
+paginationPreText: '&lsaquo;',
+paginationNextText: '&rsaquo;'
+		 </pre>
+	   </li>
+		<li> 以下属性都是用来配置工具条
+		 <pre>
+searchTimeOut: 500,
+trimOnSearch: true, //是否忽略查询内容两头空格
+searchText: '', //设置初始查询文本，该值会被自动填充到search 文本域中
+search: false,
+showColumns: false,
+showPaginationSwitch: false,
+showRefresh: false,
+showToggle: false,
+searchOnEnterKey: false, //enter键触发查询
+strictSearch: false, //true为全匹配查询, false 为模糊查询(其实就是indexof)
+searchAlign: 'right', //查询框位置 left right
+selectItemName: 'btSelectItem', //单选框or多选框名称: 
+showHeader: true,
+showFooter: false,
+buttonsAlign: 'right',
+iconSize: undefined,//设置图标大小,例如工具条按钮、分页条
+iconsPrefix: 'glyphicon', // glyphicon of fa (font awesome)
+icons: {
+    paginationSwitchDown: 'glyphicon-collapse-down icon-chevron-down',
+    paginationSwitchUp: 'glyphicon-collapse-up icon-chevron-up',
+    refresh: 'glyphicon-refresh icon-refresh',
+    toggle: 'glyphicon-list-alt icon-list-alt',
+    columns: 'glyphicon-th icon-th',
+    detailOpen: 'glyphicon-plus icon-plus',
+    detailClose: 'glyphicon-minus icon-minus'
+}
+		 </pre>
+	   </li>
+		<li>
+      		escape: false,//是否格式化html格式值
+      	</li>
+        <li>
+      		 minimumCountColumns: 1,//设置最小列数, 小于minimumCountColumns，列控制按钮将不可操作
+      	</li>
+		<li>
+			以下分别用来格式化行样式及 行属性
+			<pre>
+rowStyle: function (row, index) {},
+rowAttributes: function (row, index) { },
+			</pre>
+		</li>
+		<li>
+			以下设置表格行选择模式
+			<pre>
+clickToSelect: false,
+singleSelect: false,
+			</pre>
+		</li>
+		<li>uniqueId: undefined, 设置主键field， 框架设置为Id</li>
+		<li> toolbar: [#selectId , .selectCSS],设置customer toobar </li>
+		<li>toolbarAlign: 'left', 设置customer toobar居中位置 right</li>
+		<li>checkboxHeader: true, </li>
+		<li>sortable: true, 是否允许表格排序 </li>
+ 		
+        
+        <li>以下都是事件处理函数
+		<pre>
+onAll: function (name, args) {},
+onClickCell: function (field, value, row, $element) {},
+onDblClickCell: function (field, value, row, $element) { },
+onClickRow: function (item, $element) {},
+onDblClickRow: function (item, $element) {},
+onSort: function (name, order) {},
+onCheck: function (row) {},
+onUncheck: function (row) {},
+onCheckAll: function (rows) {},
+onUncheckAll: function (rows) {},
+onCheckSome: function (rows) {},
+onUncheckSome: function (rows) {},
+onLoadSuccess: function (data) {},
+onLoadError: function (status) {},
+onColumnSwitch: function (field, checked) {},
+onPageChange: function (number, size) {},
+onSearch: function (text) {},
+onToggle: function (cardView) {},
+onPreBody: function (data) {},
+onPostBody: function () {},
+onPostHeader: function () {},
+onExpandRow: function (index, row, $detail) {},
+onCollapseRow: function (index, row) {},
+onRefreshOptions: function (options) {},
+onResetView: function () {}
+        </pre>
+        </li>
+
+        <li> 其他 
+			<pre>
+queryParams: function (params) {
+    return params;
+},
+queryParamsType: 'limit', // 设置 http request params 为 {search: ?, sort: ?, order: ?, limit: ?, offset: ?}
+responseHandler: function (res) { //格式化 Response Header
+    return res;
+},
+idField: undefined, //指定record 的id field ，该值会被设置为 checkbox or radio 的 value
+
+cardView: false,
+detailView: false,
+detailFormatter: function (index, row) { //格式化detailView
+    return '';
+},
+
+			</pre>
+        </li>
+        <li>
+        	列属性
+        	<pre>
+radio: false, 
+checkbox: false,
+checkboxEnabled: true,
+field: undefined,
+title: undefined,
+titleTooltip: undefined, //表格头 提示信息
+'class': undefined,//
+align: undefined, // left, right, center
+halign: undefined, // left, right, center
+falign: undefined, // left, right, center
+valign: undefined, // top, middle, bottom
+width: undefined,
+sortable: false,
+order: 'asc', // asc, desc
+visible: true, //列是否可见
+switchable: true,// 该属性是用来控制showColumns下拉列的
+clickToSelect: true, //是否允许点击选择
+formatter: undefined, //[function]内容格式
+footerFormatter: undefined, //[function] footer column 内容格式化， 例如汇总信息
+events: undefined,
+sorter: undefined,
+sortName: undefined,
+cellStyle: undefined, //[Object / Function]单元格样式格式化 {classes: 'String', css: {key: value}}
+searchable: true, //是否允许被检索
+searchFormatter: true, //当Client查询模式时，是否对value进行formater之后再匹配
+cardVisible: true //cardView 是否可见
+
+        	</pre>
+
+        </li>
+	</ol>
+  </div>
+</blockquote>
+
+<blockquote>
+	<p>
+		扩展插件配置
+	</p>
+	<div class="well well-lg">
+	  <ol>
+	  	<li>
+	  		<p>bs-table-control: 表格控件指令, 该指令的作用是生成bootstrap-table表格控件,有关控件设计描述如下 
+				<pre>
+/**
+ * 优先级为100, 在angular中 优先级低的指令会被优先执行
+ * @type {Number}
+ */
+priority: 100,
+/**
+ * bs-table-control指令是依赖于ngModel指令的, 所以ngModel指令必须被设置
+ * @type {Array}
+ */
+require: ['ngModel'],
+/**
+ *bs-table-control能够从父scope中绑定以下属性:
+ bsTableControl: 表格控件的配置对象
+ avdQueryParams: 表格控件的高级查询参数
+ tableData: 表格控件数据绑定对象
+ onClickRow: 行点击事件,参数类型{row: ?[Object]}
+ onDblClickRow: 行双击事件,参数类型{row: ?[Object]}
+ onClickCell: 列点击事件,参数类型{row: ?[Object], row: ?[String], value: ?}
+ onClickCell: 列双击事件,参数类型{row: ?[Object], row: ?[String], value: ?}
+ onCellCommand: 单元格Command事件,参数类型{?,?},
+ onServerSearch: 查询事件{query: ?[Object]}
+ * @type {Object}
+ */
+scope: {
+    bsTableControl: '=',
+    avdQueryParams: '=',
+    tableData: '=ngModel',
+    onClickRow: '&',
+    onDblClickRow: '&',
+    onClickCell: '&',
+    onDblClickCell: '&',
+    onCellCommand: '&',
+    onServerSearch: '&',
+}
+/**
+ * 自动将table.$el对象注入到$Scope中, 这样我们就可以在controller自由的调用table方法
+ * @type {[type]}
+ */
+table-reference: ?[string] 
+
+				</pre>
+	  		</p>
+	  	</li>
+	  	<li>
+	  		<p>高级查询插件: 高级查询插件，启用该插件时，表格上方会显示
+				<i class="glyphicon glyphicon-search"></i>按钮，点击该按钮会弹出对话框, 并且高级查询表单是支持angular template的,具有非常好的灵活性:
+				<pre>
+/**
+ * 该模板必须被$templateCache缓存管理，否则会找不到该模板, 如何将模板加入到$templateCache缓存中呢，方式有两种：
+ 1.在页面中通过以下标签定义模板，会被该缓存自动管理:
+<pre>
+&lt;script type="text/ng-template" id="table-detail-templateId"&gt;
+  	 模板内容
+&lt;/script&gt;
+</pre>
+ 2.手动添加到$templateCache中,例如$templateCache.put('templateId', templateContent), 建议定义一个angular template config service(angular模板配置服务类)，专为用于管理平台的所有模板数据
+ * @type {[type]}
+ */
+avdSearchTpl: ?['angular template id'],
+/**
+ * 是否启用高级查询插件
+ * @type {[type]}
+ */
+advancedSearch: ?[boolean],
+/**
+ * 绑定高级查询参数
+ * @type {Array}
+ */
+avd-query-params-bind: [$scope.modal]
+
+				</pre>
+	  		</p>
+
+	  	</li>
+	  	<li>
+	  		<p>分组插件: 该组件用于表格数据的分组、汇总，目前支持多列分组、Sum聚合统计
+			<pre>
+/**
+ * 是否启用分组
+ * @type {Array}
+ */
+groupBy: [boolean],
+/**
+ * 是否启用分组sum汇总计算，当状态为启用时，他会对所有groupBySumGroup=true的列类字段进行汇总统计，并显示在对应字段的分组列中, 未来会根据需求扩展出一些个性化的功能
+ */
+groupBySumGroup[boolean],
+/**
+ * 分组字段，在table标签中的配置是:data-group-by-field="[field1, field2]"
+ */
+groupByField: ? [array[(string)]]
+
+		</pre>
+	  		</p>
+		</li>
+		<li>
+			<p>详细插件: 该插件是用来显示每条record数据扩展信息的,也就是我们常说的detailView, 该插件已经集成了angular，这样我们可以更加灵活的定制出个性化、复杂的detailView信息页面, 默认会向scope中传递$tab_row_Record 和 $tab_row_index两个modal参数, 如果detailView内部会创建新的angular scope的话，我们通过scope.$parent获取该参数:
+	<pre>
+/**
+ * 是否启用detail插件
+ */
+detailView: [boolean],
+/**
+ *  detailView angular模板,该模板必须存放在$templateCache中
+ * @type {Array}
+ */
+detailTpl: [angular template]
+			</pre>
+		</p>
+		
+		</li>
+		<li>
+			<p>TreeView插件, 该插件是基于jquery.treetable差价实现的
+				用户展示树形数据结构的表格
+				<pre>
+/**
+ * 是否启用该插件
+ * @type {Array}
+ */
+treeView:[boolean],
+parentField: [string],设置父数据结构标识field，默认是Pid
+idField: [string]
+
+				</pre>
+			</p>
+		</li>
+		<li>
+			<p>客户端导出插件: 对于表格控件,目前仅支持 csv 、excel格式导出
+			<pre>
+/**
+ * 是否启用导出功能
+ * @type {Array}
+ */
+showExport: [boolean]
+
+			</pre>
+			</p>
+		</li>
+		<li>
+			<p>Cell Command: 支持通过formatter定义单元格的操作指令, 例如:</p>
+<pre>
+/**
+ * 指令处理函数配置属性为onCellCommand, 参数信息来自于cell-command节点的data-*属性
+ * 注意 返回的指令必须是 包含cell-command class,否则无效,
+ * @param  {[type]} index [description]
+ * @param  {[type]} row   [description]
+ * @return {[type]}       [description]
+ */
+formatter: function(index, row){
+	return '&lt;a href="#" class="cell-command" data-record-id="'+ row.id +'"&gt;&lt;i class="fa fa-line-chart"&gt;&lt;/i&gt;&lt;/a&gt;'
+}	
+</pre>
+		</li>
+<li>
+<p>已选数据绑定插件: 启用该插件时, 表格已选数据会自动关联$scope中的某个modal属性:</p>
+<pre>
+/**
+ * 是否启用该插件
+ * @type {Array}
+ */
+selectedBindEnable: [boolean],
+
+//设置绑定modal属性
+selectedBind: [$scope.modal]
+</pre>
+		</li>
+	  </ol>
+	</div>
+</blockquote>
+

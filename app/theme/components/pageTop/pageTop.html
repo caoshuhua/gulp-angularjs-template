@@ -1,0 +1,32 @@
+<div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
+  <a href="#!/home" class="al-logo clearfix">
+  BgoAdmin前端框架(1.0.0)</a>
+  <a href class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
+
+  <div class="search" uib-dropdown data-dropdown-append-to-body="true">
+    <i class="ion-ios-search-strong"></i>
+    <input uib-dropdown-search id="searchInput" ng-model="searchInputText" type="text" placeholder="菜单查询...">
+    <ul  class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
+        <li><i class="dropdown-arr"></i></li>
+        <li ng-repeat="item in sysMenuList | filter:searchInputText">
+            <a ng-mouseenter="hoverItem($event, item)" 
+              ui-state="item.stateRef || ''" 
+              ng-href="{{::(item.fixedHref ? item.fixedHref: '')}}">
+                {{item.text}}
+            </a>
+        </li>
+    </ul>
+  </div>
+
+  <div class="user-profile clearfix">
+    <div class="al-user-profile" uib-dropdown>
+      <a uib-dropdown-toggle class="profile-toggle-link">
+        <img ng-src="{{::( 'Nasta' | profilePicture )}}">
+      </a>
+      <ul  class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
+        <li><i class="dropdown-arr"></i></li>
+        <li><a href class="signout"><i class="fa fa-power-off"></i>退出系统</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<p>
+	{{selects}}
+</p>
+<p>
+	{{selects2}}
+</p>
+<p>
+	<form class="form-horizontal" novalidate="novalidate">
+		<div class="row">
+	      <div class="col-md-6">
+	      		<div class="form-group row clearfix">
+		          <label for="inputFirstName" class="col-sm-3 control-label">静态数据</label>
+
+		          <div class="col-sm-9">
+		            	<input type="text" class="form-control" ng-ui-autocomplete="options" ng-model="selects" />
+		          </div>
+		        </div>
+	      </div>
+
+	      <div class="col-md-6">
+	      		<div class="form-group row clearfix">
+		          <label for="inputFirstName" class="col-sm-3 control-label">$Resource数据</label>
+
+		          <div class="col-sm-9">
+		            	<input type="text" class="form-control" ng-ui-autocomplete="options1" ng-model="selects2" />
+		          </div>
+		        </div>
+	      </div>
+	    </div>
+	</form>
+</p>

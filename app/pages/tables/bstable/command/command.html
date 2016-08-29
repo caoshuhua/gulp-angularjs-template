@@ -1,0 +1,108 @@
+<blockquote>
+
+<div class="well well-lg">
+<p>
+html:
+<pre>
+&lt;table 
+	ng-model="jstabledata" 
+	data-show-pagination-info="false"
+	bs-table-control="tableOptions"
+	//绑定事件函数(其他的事件绑定都一样)
+	on-cell-command="doWhenCellCommand(params)"
+	data-height="450"
+	&gt;
+	&lt;thead&gt;
+	&lt;tr&gt;
+	 &lt;th data-field="id" data-sortable="true"&gt;ID&lt;/th&gt;
+	 &lt;th data-field="name" data-sortable="true"&gt;名称&lt;/th&gt;
+	 &lt;th data-field="role" data-sortable="true"&gt;职位&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;/thead&gt;
+&lt;/table&gt;			
+</pre>
+javascript
+<pre>
+angular.controller('demoController', ['$scope', ngAlert, function($scope, ngAlert){
+	$scope.tableOptions = {
+		options: {
+			columns: [
+			{},
+			{
+				formatter: function(index, row){
+					var html = [
+						'&lt;div class="btn-group" role="group"&gt;',
+						'&lt;a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-default dropdown-toggle"&gt;',
+						'Dropdown',
+						'&lt;span class="caret"&gt;&lt;/span&gt;',
+						'&lt;/a&gt;',
+						'&lt;ul class="dropdown-menu"&gt;',
+							'&lt;li&gt;',
+								'&lt;a class="cell-command" data-record-id="'+ row.id +'" href="#"&gt;command1&lt;/a&gt;',
+							'&lt;/li&gt;',
+							'&lt;li&gt;',
+								'&lt;a class="cell-command" data-record-id="'+ row.id +'" href="#"&gt;command2&lt;/a&gt;',
+							'&lt;/li&gt;',
+							'&lt;li&gt;',
+								'&lt;a class="cell-command" data-record-id="'+ row.id +'" href="#"&gt;command3&lt;/a&gt;',
+							'&lt;/li&gt;',
+							'&lt;li&gt;',
+								'&lt;a class="cell-command" data-record-id="'+ row.id +'" href="#"&gt;command4&lt;/a&gt;',
+							'&lt;/li&gt;',
+						'&lt;/ul&gt;',
+						'&lt;/div&gt;'
+					];
+					return html.join('');
+				}
+
+			},
+			{
+				formatter: function(index, row){
+					var html = [
+						'&lt;a href="javascript:void(0)"',
+						' class="cell-command"',
+						' data-record-id="'+ row.id +'"',
+						' data-record-index="'+ index +'"',
+						' &gt;',
+						'&lt;i class="fa fa-leaf"&gt;&lt;/i&gt;command',
+						'&lt;/a&gt;'
+					];
+					return html.join('');
+				}
+			}
+		]
+		}
+
+	};
+	$scope.jstabledata = {total: 100, rows: [
+		{id: '100000001',name: '用户1',role: '测试角色1'},
+		{id: '100000002',name: '用户2',role: '测试角色2'}
+	]}
+
+	$scope.doWhenCellCommand = function(params){
+		ngAlert.info('cell command:' + JSON.stringify(params));
+	}
+
+}])
+</pre>
+</p>
+</div>
+</blockquote>
+<p>
+	例子
+<table 
+	ng-model="jstabledata" 
+	data-show-pagination-info="false"
+	bs-table-control="tableOptions"
+	on-cell-command="doWhenCellCommand(params)"
+	data-height="450">
+	<thead>
+	<tr>
+	 <th data-field="id" data-sortable="true">ID</th>
+	 <th data-field="name" data-sortable="true">名称</th>
+	 <th data-field="role" data-sortable="true">职位</th>
+	</tr>
+	</thead>
+</table>
+
+</p>

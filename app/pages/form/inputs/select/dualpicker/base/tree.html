@@ -1,0 +1,47 @@
+<div class="modal-header" style="padding: 5px">
+  <div class="pull-left">
+    	<h3class="modal-title">选择窗口</h3>
+  </div>
+  <div class="pull-right">
+    <a href="javascript:void(0)" class="btn btn-default" ng-click="closeThisDialog('cancel')">关闭</a>
+    <a href="javascript:void(0)" class="btn btn-default" ng-click="closeThisDialog(selectedList)">确定</a>
+   </div>
+</div>
+<div class="modal-body container-fluid" style="padding:5px;">
+	<div class="row">
+		<div class="col-xs-6" style="padding: 0px;">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div
+						ng-model="chosenDatas"
+						ui-tree-control="chosenOptions" 
+						ng-resource="chosenDatasource"
+						selection-nodes="selecteChosenDatas"
+						on-redraw="onTreeReDraw(nodes)"
+						ng-style="chosenStyle"
+						data-tree-reference="treeReference"
+					></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-1" >
+			<div class="btn-group-vertical" role="group" style="margin-top: 100px">
+			  <a ng-click="(selecteChosenDatas.length > 0) && doSelect()" 
+			  	ng-disabled="!(selecteChosenDatas.length > 0)" 
+			  	href="javascript:void(0)" 
+			  	class="btn btn-default" 
+			  	title="选择">&gt;&gt;</a>
+			  <a ng-click="(inverseSelectedList.length > 0) && doDelete()" 
+			  href="javascript:void(0)" 
+			  class="btn btn-default" 
+			  ng-disabled="!(inverseSelectedList.length > 0)"  
+			  title="取消">&lt;&lt;</a>
+			</div>
+		</div>
+		<div class="col-xs-5">
+			<select multiple="multiple" style="border: none; width: 100%" ng-model="inverseSelectedList" ng-style="selectedStyle">
+				<option ng-value="item.id" ng-repeat="item in selectedList">{{item.text}}</option>
+			</select>
+		</div>
+	</div>
+</div>

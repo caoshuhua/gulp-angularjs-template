@@ -1,0 +1,54 @@
+<div cg-busy="{promise:savePromise.$promise ,templateUrl:'app/pages/ui/busy/template/inoperating.html'}">
+<form novalidate="novalidate">
+  <div class="modal-header">
+    <h4 class="modal-title">查询条件</h4>
+  </div>
+  <div class="modal-body">
+      <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+              <label>用户名:</label>
+              <input type="text" class="form-control" 
+                    name="username" ng-model="queryParams.username">
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group"">
+              <label>名称:</label>
+              <input type="text" class="form-control" 
+                    name="name" ng-model="queryParams.name">
+            </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+              <label>职位:</label>
+             <input type="text" class="form-control" 
+                      name="post" ng-model="queryParams.post">
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group">
+              <label>角色:</label>
+              <input type="text" class="form-control" 
+                      name="role" ng-model="queryParams.role">
+            </div>
+        </div>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-default btn-with-icon"
+      ng-click="cancelAvd()">
+      <i class="ion-close-round"></i>取消
+    </button>
+    <button type="submit" class="btn btn-info btn-with-icon"
+      ng-click="submitParams()">
+      <i class="ion-search"></i>查询
+    </button>
+</div>
+</form>
+</div>

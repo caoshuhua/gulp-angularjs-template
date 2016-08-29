@@ -1,0 +1,13 @@
+<div class="modal-header">
+   <h4 class="modal-title"> 
+   <i class="fa fa-warning" ng-if="type == 3"></i>
+   <i class="fa fa-check" ng-if="type == 2"></i>
+   <i class="fa fa-info" ng-if="type == 1"></i>
+   {{title}}</h4>
+</div>
+<div class="modal-body" style="height: 50px;">
+	{{message}}
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" ng-click="closeThisDialog()">{{okText}}</button>
+</div>

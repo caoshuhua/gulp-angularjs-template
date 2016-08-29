@@ -1,0 +1,12 @@
+<div class="modal-header">
+   <h4 class="modal-title"> 
+   <i class="fa fa-warning"></i>
+   {{title}}</h4>
+</div>
+<div class="modal-body" style="height: 50px;">
+	{{message}}
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-white" ng-click="closeThisDialog(false)">{{cancelText}}</button>
+  <button type="button" class="btn btn-success" ng-click="closeThisDialog(true)">{{okText}}</button>
+</div>

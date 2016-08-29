@@ -1,0 +1,28 @@
+@import "common.scss";
+@import "theme/_socicon.scss";
+@import "theme/_layout.scss";
+@import 'theme/buttons.scss';
+@import 'app/form.scss';
+
+
+.wrapper{ color:#484744; background:#f8f6f2; font-family:"Helvetica Neue",helvetica,'lucida grande','lucida sans unicode',lucida,'Hiragino Sans GB','Microsoft YaHei','WenQuanYi Micro Hei',sans-serif;}
+.inner{ width:400px; margin:8% auto 2% auto;}
+.single-panel-inner.login-mini{ margin:0 5%;}
+.single-panel-header.login_logo_area{ text-align:center;}
+.logo-min{ vertical-align:middle; overflow:hidden; font-size:60px; line-height:52px;}
+.logo-min span{ color:#ff0000;}
+.logo-min h1{ font-size:32px;}
+.logo-min:link,.single-panel-footer a:link{color:#6f6e6b;outline:0 none; text-decoration:none;}
+.logo-min:hover,.single-panel-footer a:hover{color:#337ab7;text-decoration:none}
+.logo-min:focus,.single-panel-footer a:focus{text-decoration:none}
+
+.single-panel-body{ margin-top:5px; padding:20px 0;}
+.single-panel-body .form-group .form-control{ color:#acaba7; height:40px;}
+.single-panel-body .form-group .form-control:hover{ color:#000;}
+.single-panel-body .form-group .alert{ margin-bottom:0;}
+.single-panel-body .form-group .btn{ margin-top:20px;}
+.single-panel-body .form-group .btn:hover { -webkit-transform: none; transform: none; background:#20857b; }
+.single-panel-footer{ border-top:1px #e8edf3 solid; padding:20px; text-align:center; line-height:14px;}
+.single-panel-footer .split{ display:inline-block; height:14px; margin:0 10px; border-left:1px #e8edf3 solid;}
+.single-panel-section input.error, .single-panel-section select.error, .single-panel-section textarea.error{ border-color:#e9322d; box-shadow:0 0 6px #f8b9b7; -webkit-box-shadow:0 0 6px #f8b9b7; }
+.mr_5{ margin-right:5px;}

@@ -1,0 +1,62 @@
+<div class="modal-header" style="padding: 5px">
+  <div class="pull-left">
+    	<h3class="modal-title">选择窗口</h3>
+  </div>
+  <div class="pull-right">
+    <a href="javascript:void(0)" class="btn btn-default" ng-click="closeThisDialog('cancel')">关闭</a>
+    <a href="javascript:void(0)" class="btn btn-default" ng-click="closeThisDialog(selectedList)">确定</a>
+   </div>
+</div>
+<div class="modal-body container-fluid" style="padding:5px;">
+	<div class="row">
+		<div class="col-xs-8" style="padding: 0px;">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<table
+					data-table-reference="tableReference"
+					data-show-pagination-info="false"
+					data-selected-bind-enable="true"
+					data-height="400"
+					data-advanced-search="true"
+					data-page-size="20"
+					selected-bind="selecteChosenDatas"
+					ng-model="chosenDatas"
+					bs-table-control="chosenOptions"
+					avd-query-params-bind="chosenAvdSearchParams"
+					on-server-search="queryChosenDatas(params)"
+					>
+						<thead>
+							<tr>
+								<th data-field="state"></th>
+								<th data-field="column1">列1</th>
+							 	<th data-field="column2">列2</th>
+							 	<th data-field="column3">列3</th>
+							 	<th data-field="column4">列4</th>
+							</tr>
+						</thead>
+						
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-1" >
+			<div class="btn-group-vertical" role="group" style="margin-top: 100px">
+			  <a ng-click="(selecteChosenDatas.length > 0) && doSelect()" 
+			  	ng-disabled="!(selecteChosenDatas.length > 0)" 
+			  	href="javascript:void(0)" 
+			  	class="btn btn-default" 
+			  	title="选择">&gt;&gt;</a>
+			  <a ng-click="(inverseSelectedList.length > 0) && doDelete()" 
+			  href="javascript:void(0)" 
+			  class="btn btn-default" 
+			  ng-disabled="!(inverseSelectedList.length > 0)"  
+			  title="取消">&lt;&lt;</a>
+			</div>
+		</div>
+		<div class="col-xs-3">
+			<select multiple="multiple" style="border: none; width: 100%" ng-model="inverseSelectedList" ng-style="selectedStyle">
+				<option ng-value="item.id" ng-repeat="item in selectedList">{{item.text}}</option>
+			</select>
+		</div>
+	</div>
+</div>

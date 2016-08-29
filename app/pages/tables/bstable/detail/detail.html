@@ -1,0 +1,64 @@
+<blockquote>
+
+<div class="well well-lg">
+<p>
+html:
+<pre>
+&lt;script type="text/ng-template" id="100000000001"&gt;
+  	&lt;table-detail-view-example-component&gt;&lt;/table-detail-view-example-component&gt;
+&lt;/script&gt;
+&lt;table 
+	ng-model="jstabledata" 
+	data-show-pagination-info="false"
+	data-pagination="false"
+	data-single-select="false"
+	data-detail-view="true"
+	data-detail-tpl="100000000001"
+	bs-table-control="tableOptions"&gt;
+	&lt;thead&gt;
+	&lt;tr&gt;
+		&lt;th data-field="id"&gt;ID&lt;/th&gt;
+	 	&lt;th data-field="name"&gt;name&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;/thead&gt;
+&lt;/table&gt;	
+</pre>
+javascript
+<pre>
+angular.controller('demoController', ['$scope'function($scope){
+	$scope.tableOptions = {};
+	$scope.jstabledata = {total: 100, rows: [
+		{id: '10001',name: '列数据'},
+		{id: '10002',name: '列数据'},
+		{id: '10003',name: '列数据'},
+		{id: '10004',name: '列数据'},
+		{id: '10005',name: '列数据'},
+		{id: '10006',name: '列数据'}
+	]}
+}])
+</pre>
+</p>
+</div>
+</blockquote>
+<p>
+例子
+<script type="text/ng-template" id="100000000001">
+  	<table-detail-view-example-component></table-detail-view-example-component>
+</script>
+<table 
+	ng-model="jstabledata" 
+	data-show-pagination-info="false"
+	data-pagination="false"
+	data-single-select="false"
+	data-detail-view="true"
+	data-detail-tpl="100000000001"
+	bs-table-control="tableOptions">
+	<thead>
+	<tr>
+		<th data-field="id">ID</th>
+	 	<th data-field="name">name</th>
+	</tr>
+	</thead>
+</table>
+
+</p>

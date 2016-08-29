@@ -1,0 +1,92 @@
+<blockquote>
+
+<div class="well well-lg">
+<h1>Select Base</h1>
+<p>
+	Select Base 控件是一个基础控件，真正的选择控件是由
+	Select Base 和 Picker构成, 接下来让我们看一看Select Base是什么
+</p>
+<p>
+html
+<pre>
+&lt;form name="exampleForm" class="form-inline"&gt;
+	&lt;div class="input-group"&gt;
+	&lt;input type="text"
+				ng-model="selects"
+				ui-select-base
+				data-picker-width="400",
+				data-picker-height="100",
+				data-trigger-selector=":parent:button"
+				class="form-control"
+				/&gt;
+				&lt;span class="input-group-btn"&gt;
+            		&lt;button type="button" class="btn btn-default" &gt;
+            		&lt;i class="glyphicon glyphicon-chevron-down"&gt;&lt;/i&gt;
+            		&lt;/button&gt;
+          		&lt;/span&gt;
+		&lt;/div&gt;
+&lt;/form&gt;			
+</pre>
+</p>
+例子
+<p>
+<form name="exampleForm" class="form-inline">
+	<div class="input-group">
+	<input type="text"
+				ng-model="selects"
+				ui-select-base
+				data-picker-width="400",
+				data-picker-height="100",
+				data-trigger-selector=":parent:button"
+				class="form-control"
+				/>
+				<span class="input-group-btn">
+            		<button type="button" class="btn btn-default" >
+            		<i class="glyphicon glyphicon-chevron-down"></i>
+            		</button>
+          		</span>
+		</div>
+</form>	
+</p>
+</div>
+</blockquote>
+<blockquote>
+<div class="well well-lg">
+<h1>配置说明</h1>
+<p style="color:red">
+	说明: 框架中所有控件的可配属性格式: <br/>
+	1: 如果在节点中设置，必须是data-*的格式, 例如(data-template-tpl)<br/>
+	2:如果在controller中设置 就不要加data前缀了,例如(templateTpl)
+</p>
+<p>
+<ol>
+<li>ui-select-base: Select Base指令 通过该指令设置表单参数: <p>
+	格式: {
+		options: {
+			//表单配置参数
+		}, 
+		datas: [] //数据
+	}
+</p></li>
+<li>ng-model: Select Base指令依赖于ng-model指令, 用户绑定表单值,所以ng-model是必须的</li>
+<li>ng-disabled: 表单禁用控制指令</li>
+<li>pickerWidth: 设置下来面板的宽度</li>
+<li>pickerHeight: 设置下来面板的高度</li>
+<li>triggerSelector:[string],默认':self', 设置下拉面板触发元素, 语法格式:
+<p>
+	:self 当前input元素<br/>
+	:parent:selector 代表 $(currentEl).parent().find(selector).eq(0)<br/>
+	selector 表示$(select)<br/>
+</p></li>
+<li>singleSelect:[boolean] 默认false, 是否单选</li>
+<li>textField:[string],默认'text', 文本域字段</li>
+<li>idField:[string],默认'id' 业务域字段</li>
+<li>templateTpl:[string] picker模板</li>
+<li>plain:[boolean],默认false, true代表templateTpl为模板内容, false代表为templateTpl为模板Id</li>
+<li>
+	containParentNode: [boolean] 默认false: 设置树选择时，是否包含父节点
+</li>
+</ol>
+</p>
+</div>
+</blockquote>

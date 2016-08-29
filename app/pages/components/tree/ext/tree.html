@@ -1,0 +1,133 @@
+<blockquote>
+
+<div class="well well-lg">
+<h1>angular Tree</h1>
+<p>
+	angular Tree 是基于JsTree(https://github.com/vakata/jstree/blob/master/src/jstree.js),封装的Tree UI，支持angular resource加载数据、支持ngModel树数据绑定、支持对已选节点的数据绑定，更详细的属性配置请见源码: 
+<pre>
+$.jstree.defaults.core = {
+	...
+}
+</pre>
+配置详见如下:
+<pre>
+1. ui-tree-control: 指令属性，改属性可以用于绑定tree配置信息
+2. ng-model: 指令属性, 用于绑定tree 数据源
+3. ng-resource: 用于绑定用于绑定tree数据源
+4. selection-nodes: 用户绑定已选节点的数据
+5. on-selection: 绑定节点select_node事件函数
+6. containParentNode: 是否包含父节点(false代表selectNodes结果中是不包含父节点的,反之亦然)
+7.parentTagField: [string field],设置父节点标识字段, containParentNode=false时将会通过这个字段识别是否为父节点
+8.treeReference: 将$element注入到父$scope中,这样我们就通过treeReference来直接调用jstree
+</pre>
+
+</p>
+<p>
+html
+<pre>
+例子(当前已选择的节点: selectionTreeDatas | json)
+&lt;div 
+	ui-tree-control="treeOptions" 
+	ng-model="treeData"
+	data-multiple="false"
+	selection-nodes="selectionTreeDatas"
+	on-selection = "selectionNodes(node)"
+&gt;&lt;/div&gt;			
+</pre>
+</p>
+<p>
+javascript
+<pre>
+controller: ['$scope', 'ngAlert', function($scope, ngAlert){
+	$scope.treeOptions = {};
+	$scope.selectionTreeDatas = undefined;
+	$scope.selectionNodes = function(node){
+		ngAlert.info('你选择的节点:' + node.text);
+	}
+
+	$scope.treeData = [
+		{ id : 'ajson1', parent : '#', text : '节点1'},
+	    { id : 'ajson2', parent : '#', text : '节点2' },
+	    { id : 'ajson3', parent : 'ajson2', text : '节点3'},
+	    { id : 'ajson4', parent : 'ajson2', text : '节点4'},
+	    { id : 'ajson5', parent : 'ajson3', text : '节点5'},
+	    { id : 'ajson6', parent : 'ajson3', text : '节点6'},
+	    { id : 'ajson7', parent : 'ajson6', text : '节点7'},
+	    { id : 'ajson8', parent : 'ajson6', text : '节点8'},
+	    { id : 'ajson9', parent : 'ajson6', text : '节点9'},
+	    { id : 'ajson10', parent : '#', text : '节点10'},
+	    { id : 'ajson11', parent : '#', text : '节点11'},
+	    { id : 'ajson12', parent : '#', text : '节点12'},
+	    { id : 'ajson13', parent : '#', text : '节点13'},
+	    { id : 'ajson14', parent : '#', text : '节点14'}
+	]
+	}]			
+</pre>
+</p>
+<p>
+	数据结构:
+<pre>
+[
+	{"id":1,"text":"节点1","children":true},
+	{"id":2,"text":"节点2","children":true},
+	{"id":2,"text":"节点2","children": [
+		......
+	]}
+]
+或者
+[
+	{ id : 'ajson1', parent : '#', text : '节点1'},
+	{ id : 'ajson2', parent : '#', text : '节点2' },
+	{ id : 'ajson3', parent : 'ajson2', text : '节点3'},
+	{ id : 'ajson4', parent : 'ajson2', text : '节点4'},
+	{ id : 'ajson5', parent : 'ajson3', text : '节点5'},
+	{ id : 'ajson6', parent : 'ajson3', text : '节点6'},
+	{ id : 'ajson7', parent : 'ajson6', text : '节点7'},
+	{ id : 'ajson8', parent : 'ajson6', text : '节点8'},
+	{ id : 'ajson9', parent : 'ajson6', text : '节点9'},
+	{ id : 'ajson10', parent : '#', text : '节点10'},
+	{ id : 'ajson11', parent : '#', text : '节点11'},
+	{ id : 'ajson12', parent : '#', text : '节点12'},
+	{ id : 'ajson13', parent : '#', text : '节点13'},
+	{ id : 'ajson14', parent : '#', text : '节点14'}
+]
+</pre>
+
+</p>
+
+</div>
+</blockquote>
+<p>
+例子1(当前已选择的节点: {{selectionTreeDatas | json}})
+<div 
+	ui-tree-control="treeOptions" 
+	ng-model="treeData"
+	data-multiple="false"
+	selection-nodes="selectionTreeDatas"
+	data-contain-parent-node="false"
+	on-selection = "selectionNodes(node)"
+></div>
+
+</p>
+<p>
+例子2(当前已选择的节点: {{selectionTreeDatas1 | json}})
+<div 
+	ui-tree-control="treeOptions" 
+	ng-model="treeData"
+	data-multiple="true"
+	data-contain-parent-node="false"
+	selection-nodes="selectionTreeDatas1"
+></div>
+
+</p>
+<p>
+例子3(当前已选择的节点(<font style="color: red">包含父节点</font>): {{selectionTreeDatas2 | json}})
+<div 
+	ui-tree-control="treeOptions" 
+	ng-model="treeData"
+	data-multiple="true"
+	data-contain-parent-node="true"
+	selection-nodes="selectionTreeDatas2"
+></div>
+
+</p>

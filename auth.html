@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BgoAdmin前端框架(1.0.0)</title>
+ <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+  
+  <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+  <!-- bower:css -->
+  <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:css({.tmp/serve,src}) styles/auth.css -->
+  <!-- inject:css -->
+  <!-- css files will be automatically insert here -->
+  <!-- endinject -->
+  <!-- endbuild -->
+</head>
+<body class="wrapper">
+<div class="inner">
+    <div class="single-panel-inner login-mini">
+        <div class="single-panel-header login_logo_area">
+            <a class="logo-min" href="#">
+                Meters<span>/</span>bonwe
+                <h1>管理平台</h1>
+            </a>
+        </div>
+
+        <div class="single-panel-body">
+            <!-- 登录 begin -->
+            <div class="single-panel-section" id="login">
+                <form name="login_form" class="form-horizontal wt-form">
+                    <div class="form-group">
+                        <div class="input-group-">
+                            <input class="form-control" type="text" placeholder="邮箱/用户名/手机" name="login_name" tabindex="1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group-">
+                            <input class="form-control error" type="password" placeholder="密码" name="login_password" tabindex="2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="alert alert-danger">
+                            <i class="glyphicon glyphicon-remove-sign mr_5"></i>
+                            登录密码不能为空
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block btn-lg" type="button" tabindex="4">登 录</button>
+                    </div>
+                </form>
+            </div>
+            <!-- 登录 end -->
+            <!-- 找回密码 begin -->
+            <!-- <div class="single-panel-section" id="find">
+                <form name="login_form" class="form-horizontal wt-form">
+                    <div class="form-group">
+                        <div class="input-group-">
+                            <input class="form-control" type="password" placeholder="密码" name="login_password" tabindex="1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block btn-lg" type="button" tabindex="2">发送重置密码的邮件</button>
+                    </div>
+                </form>
+            </div> -->
+            <!-- 找回密码 end -->
+            <!-- 用户注册 begin -->
+            <!-- <div class="single-panel-section" id="register">
+                <form name="login_form" class="form-horizontal wt-form">
+                    <div class="form-group">
+                        <div class="input-group-">
+                            <input class="form-control" type="text" placeholder="邮箱" name="" tabindex="1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group-">
+                            <input class="form-control" type="text" placeholder="用户名" name="" tabindex="2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group-">
+                            <input class="form-control" type="password" placeholder="密码" name="login_password" tabindex="3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block btn-lg" type="button" tabindex="4">注 册</button>
+                    </div>
+                </form>
+            </div> -->
+            <!-- 用户注册 end -->
+        </div>
+
+        <div class="single-panel-footer">
+            <a href="#">忘记密码</a>
+            <span class="split"></span>
+            <a href="#">用户注册</a>
+        </div>
+
+        <!-- <div class="single-panel-footer">
+            <a href="#">返回登录</a>
+            <span class="split"></span>
+            <a href="#">用户注册</a>
+        </div>
+        
+        <div class="single-panel-footer">
+            <a href="#">返回登录</a>
+        </div> -->
+
+    </div> 
+</div>
+
+</body>
+</html>

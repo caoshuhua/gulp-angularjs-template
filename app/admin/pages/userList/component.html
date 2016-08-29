@@ -1,0 +1,45 @@
+<div cg-busy="{promise: tableDatas.$promise,templateUrl:'app/pages/ui/busy/template/loading.html'}">
+<div class="futuresContractMag-customer-btn-toolbar" role="toolbar">
+	<div class="btn-group" role="group">
+		<button class="btn btn-info btn-with-icon" type="button"
+			ng-click="addUser()">
+			<i class="ion-plus-round"></i>
+			新增
+		</button>
+		
+		
+	</div>
+</div>
+
+<!-- 定义表格 -->
+<table 
+	ng-model="tableDatas"
+	bs-table-control="tableOptions"
+	data-single-select="false"
+	data-show-columns="true"
+	data-toolbar=".userList-customer-btn-toolbar"
+	on-server-search="queryDatas(params)"
+	style="min-width: 1500px;" 
+	data-height="500"
+	data-advanced-search="true"
+	data-avd-search-width="900"
+	avd-query-params-bind="searchParams"
+	data-avd-search-tpl='app/admin/pages/userList/search.html'
+	selected-bind="selectorRows"
+	data-selected-bind-enable="true"
+	>
+    <thead>
+    <tr>
+    	<th data-checkbox="true" data-align="center" data-valign="middle" data-class="cart-views-xs"></th>
+    	<th data-field="shopCode" data-width="50" data-align="center" data-valign="middle" data-class="cart-views-xs">门店编码</th>
+    	<th data-field="shopName" data-width="100" data-align="left" data-valign="middle" data-class="cart-views-xs">门店名称</th>
+    	<th data-field="agentCode" data-width="50" data-align="left" data-valign="middle" data-class="cart-views-xs">组织编码</th>
+    	<th data-field="agentName" data-width="100"  data-align="left" data-valign="middle" data-class="cart-views-xs">组织名称</th>
+    	<th data-field="shopStatus" data-width="20" data-align="center" data-valign="middle" data-class="cart-views-xs">店铺状态</th>
+    	<th data-field="openDate" data-width="20" data-align="left" data-valign="middle" data-class="cart-views-xs">开业时间</th>
+    	<th data-field="orderStatus" data-width="20" data-align="left" data-valign="middle" data-class="cart-views-xs">征订情况</th>
+	</tr>
+    </thead>
+</table>
+
+</div>

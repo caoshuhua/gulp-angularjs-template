@@ -1,0 +1,281 @@
+<form novalidate="novalidate" name="validateForm">
+	<div class="row">
+	  <div class="col-sm-6">
+	    <div class="form-group" 
+	    	ng-class="{'has-error': (validateForm.name1.$invalid && (validateForm.name1.$dirty || validateForm.$submitted))}">
+	      <label>非空</label>
+	      <input type="text" class="form-control" ng-model="$data.name1" name="name1" required>
+	      <span class="help-block error-block basic-block">必填项</span>
+	    </div>
+	  </div>
+	  <div class="col-sm-6">
+	    <div class="form-group" 
+	    	ng-class="{'has-error': (validateForm.name2.$invalid && (validateForm.name2.$dirty || validateForm.$submitted))}">
+	      <label>内容长度[5,10]</label>
+	      <input type="text" class="form-control" ng-model="$data.name2" name="name2" required ng-minlength="5" ng-maxlength="10">
+	      <span class="help-block error-block basic-block">必填项,且内容长度[5,10]</span>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="row">
+	  <div class="col-sm-6">
+	    <div class="form-group" 
+	    	ng-class="{'has-error': (validateForm.name3.$invalid && (validateForm.name3.$dirty || validateForm.$submitted))}">
+	      <label>Url</label>
+	      <input type="url" class="form-control" ng-model="$data.name3" name="name3" required>
+	      <span class="help-block error-block basic-block">必填项,请输入正确的Url</span>
+	    </div>
+	  </div>
+	  <div class="col-sm-6">
+	    <div class="form-group" 
+	    	ng-class="{'has-error': (validateForm.name4.$invalid && (validateForm.name4.$dirty || validateForm.$submitted))}">
+	      <label>Email</label>
+	      <input type="email" class="form-control" ng-model="$data.name4" name="name4" required>
+	      <span class="help-block error-block basic-block">必填项,请输入正确的Email</span>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="row">
+	  <div class="col-sm-6">
+	    <div class="form-group" 
+	    	ng-class="{'has-error': (validateForm.name5.$invalid && (validateForm.name5.$dirty || validateForm.$submitted))}">
+	      <label>Number</label>
+	      <input type="number" class="form-control" ng-model="$data.name5" name="name5" required>
+	      <span class="help-block error-block basic-block">
+	      必填项,</span>
+	    </div>
+	  </div>
+	  <div class="col-sm-6">
+	    <div class="form-group" 
+	    	ng-class="{'has-error': (validateForm.name6.$invalid && (validateForm.name6.$dirty || validateForm.$submitted))}">
+	      <label>Number[10, 100]</label>
+	      <input type="number" class="form-control" ng-model="$data.name6" name="name6" required
+	      ng-min="10" ng-max="100">
+	      <span class="help-block error-block basic-block">必填项,数字必须属于10~100范围</span>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="row">
+	  <div class="col-sm-6">
+	    <div class="form-group" 
+	    	ng-class="{'has-error': (validateForm.name7.$invalid && (validateForm.name7.$dirty || validateForm.$submitted))}">
+	      <label>选择(必选)</label>
+	      <select required 
+	      	class="form-control selectpicker" 
+	      	selectpicker 
+	      	title="单选"
+	      	name="name7"
+            ng-model="$data.select7"
+            ng-options="item as item.label for item in standardSelectItems">
+    		</select>
+	      <span class="help-block error-block basic-block">
+	      必填项, 单选</span>
+	    </div>
+	  </div>
+	  <div class="col-sm-6">
+	    	<div class="form-group" 
+	    	ng-class="{'has-error': (validateForm.name8.$invalid && (validateForm.name8.$dirty || validateForm.$submitted))}">
+	      <label>选择(多选最少3个最多7个)</label>
+	      <select required 
+	      	class="form-control selectpicker" 
+	      	selectpicker
+	      	multiple
+	      	ng-min-count="3"
+	      	ng-max-count="7"
+	      	title="多选"
+	      	name="name8"
+            ng-model="$data.name8"
+            ng-options="item as item.label for item in standardSelectItems">
+           </select>
+	      <span class="help-block error-block basic-block">
+	      必填项,多选:最少3个 最多7个</span>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="row">
+	  <div class="col-sm-6">
+	    <div class="form-group has-feedback" 
+	    	ng-class="{'has-error': (validateForm.name10.$invalid && (validateForm.name10.$dirty || validateForm.$submitted))}">
+	      <label>扩展选择(必选、单选)</label>
+	      <input type="text"
+	        required
+	        name="name10"
+			ng-model="selects1"
+			ui-select-base="extSelectoptions1"
+			decision-select-picker
+			data-picker-height="100",
+			data-single-select="true"
+			class="form-control"
+			/>
+		<i class="ion-arrow-down-b form-control-feedback"></i>
+		<span class="help-block error-block basic-block">
+	      必填项, 单选</span>
+	    </div>
+	  </div>
+	  <div class="col-sm-6">
+	    	<div class="form-group has-feedback" 
+	    	ng-class="{'has-error': (validateForm.name11.$invalid && (validateForm.name11.$dirty || validateForm.$submitted))}">
+	      <label>扩展选择(必选、多选:不能超过2个)</label>
+	      <input type="text"
+	        required
+	        ng-max-count="2"
+	        name="name11"
+			ng-model="selects2"
+			ui-select-base="extSelectoptions1"
+			decision-select-picker
+			data-picker-height="100",
+			data-single-select="false"
+			class="form-control"
+			/>
+		<i class="ion-arrow-down-b form-control-feedback"></i>
+		<span class="help-block error-block basic-block">
+	      必选、多选:不能超过2个</span>
+	    </div>
+	  </div>
+	</div>
+
+
+	<div class="row">
+	  <div class="col-sm-6">
+	    <div class="form-group has-feedback" 
+	    	ng-class="{'has-error': (validateForm.name12.$invalid && (validateForm.name12.$dirty || validateForm.$submitted))}">
+	      <label>扩展Tree(必选、单选)</label>
+	      <input type="text"
+	      	required
+			ng-model="selects3"
+			name="name12"
+			ui-select-base="selectTreeoptions1"
+			data-picker-height="230",
+			data-single-select="true"
+			tree-select-picker
+			class="form-control"
+			/>
+		<i class="ion-arrow-down-b form-control-feedback"></i>
+		<span class="help-block error-block basic-block">
+	      必填项, 单选</span>
+	    </div>
+	  </div>
+	  <div class="col-sm-6">
+	    	<div class="form-group has-feedback" 
+	    	ng-class="{'has-error': (validateForm.name13.$invalid && (validateForm.name13.$dirty || validateForm.$submitted))}">
+	      <label>扩展Tree(必选、多选:至少选择2条)</label>
+	      <input type="text"
+	      	required
+	      	ng-min-count="2"
+			ng-model="selects4"
+			name="name13"
+			ui-select-base="selectTreeoptions1"
+			data-picker-height="230",
+			data-single-select="false"
+			tree-select-picker
+			class="form-control"
+			/>
+		<i class="ion-arrow-down-b form-control-feedback"></i>
+		<span class="help-block error-block basic-block">
+	      必选、多选:至少选择2条</span>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="row">
+	  <div class="col-sm-6">
+	    <div class="form-group has-feedback" 
+	    	ng-class="{'has-error': (validateForm.name15.$invalid && (validateForm.name15.$dirty || validateForm.$submitted))}">
+	      <label>扩展Date(必选, 日期范围: 最近一周 )</label>
+	      <input type="text"
+	        required
+			ng-model="selects5"
+			name="name15"
+			ui-select-base="selectDateoptions1"
+			data-picker-height="260",
+			date-select-picker
+			class="form-control"
+			/>
+		<i class="ion-arrow-down-b form-control-feedback"></i>
+		<span class="help-block error-block basic-block">
+	     必选, 日期范围: 最近一周</span>
+	    </div>
+	  </div>
+	  <div class="col-sm-6">
+	    	<div class="form-group has-feedback" 
+	    	ng-class="{'has-error': (validateForm.name16.$invalid && (validateForm.name16.$dirty || validateForm.$submitted))}">
+	      <label>扩展Date(级联、必选, 日期范围: 大于等于左边的选择日期 )</label>
+	      <input type="text"
+	        required
+			ng-model="selects6"
+			name="name16"
+			start-date="selects5"
+			ui-select-base="selectDateoptions2"
+			data-picker-height="260",
+			date-select-picker
+			class="form-control"
+			/>
+		<i class="ion-arrow-down-b form-control-feedback"></i>
+		<span class="help-block error-block basic-block">
+	     级联、必选, 日期范围: 大于等于左边的选择日期</span>
+	    </div>
+	  </div>
+	</div>
+
+
+	<div class="row">
+	  <div class="col-sm-6">
+	    <div class="form-group has-feedback" 
+	    	ng-class="{'has-error': (validateForm.name18.$invalid && (validateForm.name18.$dirty || validateForm.$submitted))}">
+	      <label>扩展双向选择框(必选,多选、至少选3个)</label>
+	      <input type="text"
+	        required
+	        ng-min-count="3"
+			ng-model="selects7"
+			name="name18"
+			ui-select-duallist="selectDuallistOptions1"
+			data-picker-width = "900"
+			data-single-select="false"
+			data-picker-height = "400"
+			class="form-control"
+			/>
+		<i class="ion-arrow-down-b form-control-feedback"></i>
+		<span class="help-block error-block basic-block">
+	     必选,多选、至少选3个</span>
+	    </div>
+	  </div>
+	  <div class="col-sm-6">
+	    	<div class="form-group has-feedback" 
+	    	ng-class="{'has-error': (validateForm.name19.$invalid && (validateForm.name19.$dirty || validateForm.$submitted))}">
+	      <label>扩展双向选择框(必选,单选)</label>
+	      <input type="text"
+	        required
+	        ng-model="selects8"
+			name="name19"
+			data-single-select="true"
+			ui-select-duallist="selectDuallistOptions2"
+			data-picker-width = "900"
+			data-picker-height = "400"
+			class="form-control"
+			/>
+		<i class="ion-arrow-down-b form-control-feedback"></i>
+		<span class="help-block error-block basic-block">
+	     必选,单选</span>
+	    </div>
+	  </div>
+	</div>
+
+	<button type="submit" 
+	class="btn btn-info"
+	ng-click="validateForm.$valid && doSave()"
+	>提交</button>
+</form>
+<p>
+表单值:
+<pre>
+{{$data | json}}
+validateForm.$invalid: {{validateForm.$invalid}},
+validateForm.$valid: {{validateForm.$valid}}
+validateForm.$submitted: {{validateForm.$submitted}}
+</pre>
+</p>
+
